@@ -160,34 +160,25 @@ public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(0, 113, 193));
         jLabel8.setText("CIUDAD DE RESIDENCIA:");
 
-        txtDni.setForeground(new java.awt.Color(0, 0, 0));
-        txtDni.setBorder(null);
+        txtDni.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDni.setSelectedTextColor(new java.awt.Color(0, 102, 102));
 
-        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombre.setBorder(null);
+        txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtNombre.setSelectedTextColor(new java.awt.Color(0, 102, 102));
 
-        txtApellido.setForeground(new java.awt.Color(0, 0, 0));
-        txtApellido.setBorder(null);
+        txtApellido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtApellido.setSelectedTextColor(new java.awt.Color(0, 102, 102));
 
-        txtOcupacion.setForeground(new java.awt.Color(0, 0, 0));
-        txtOcupacion.setBorder(null);
+        txtOcupacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtOcupacion.setSelectedTextColor(new java.awt.Color(0, 102, 102));
 
-        cmbCiudadResidencia.setBackground(new java.awt.Color(255, 255, 255));
         cmbCiudadResidencia.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbCiudadResidencia.setForeground(new java.awt.Color(0, 0, 0));
         cmbCiudadResidencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
 
-        cmbGenero.setBackground(new java.awt.Color(255, 255, 255));
         cmbGenero.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbGenero.setForeground(new java.awt.Color(0, 0, 0));
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Masculino", "Femenino" }));
 
-        txtDireccion.setForeground(new java.awt.Color(0, 0, 0));
-        txtDireccion.setBorder(null);
+        txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDireccion.setSelectedTextColor(new java.awt.Color(0, 102, 102));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
@@ -242,8 +233,7 @@ public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        txtEdad.setForeground(new java.awt.Color(0, 0, 0));
-        txtEdad.setBorder(null);
+        txtEdad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtEdad.setSelectedTextColor(new java.awt.Color(0, 102, 102));
 
         jSeparator3.setBackground(new java.awt.Color(0, 113, 193));
@@ -379,7 +369,6 @@ public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
         jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        tblListado.setForeground(new java.awt.Color(0, 0, 0));
         tblListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -393,7 +382,6 @@ public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
         ));
         tblListado.setGridColor(new java.awt.Color(0, 0, 0));
         tblListado.setSelectionBackground(new java.awt.Color(0, 113, 193));
-        tblListado.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tblListado);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

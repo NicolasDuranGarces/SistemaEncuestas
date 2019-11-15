@@ -140,26 +140,22 @@ public class FrmRegistrate extends javax.swing.JFrame {
         jLabel8.setText("CIUDAD DE RESIDENCIA:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
-        txtDni.setForeground(new java.awt.Color(0, 0, 0));
-        txtDni.setBorder(null);
+        txtDni.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDni.setCaretColor(new java.awt.Color(0, 51, 102));
         txtDni.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 58, 140, -1));
 
-        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombre.setBorder(null);
+        txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtNombre.setCaretColor(new java.awt.Color(0, 51, 102));
         txtNombre.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 60, 180, -1));
 
-        txtApellido.setForeground(new java.awt.Color(0, 0, 0));
-        txtApellido.setBorder(null);
+        txtApellido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtApellido.setCaretColor(new java.awt.Color(0, 51, 102));
         txtApellido.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 122, 180, 20));
 
-        txtOcupacion.setForeground(new java.awt.Color(0, 0, 0));
-        txtOcupacion.setBorder(null);
+        txtOcupacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtOcupacion.setCaretColor(new java.awt.Color(0, 51, 102));
         txtOcupacion.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         txtOcupacion.addActionListener(new java.awt.event.ActionListener() {
@@ -169,20 +165,15 @@ public class FrmRegistrate extends javax.swing.JFrame {
         });
         jPanel1.add(txtOcupacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 278, 180, 20));
 
-        cmbCiudadResidencia.setBackground(new java.awt.Color(255, 255, 255));
         cmbCiudadResidencia.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbCiudadResidencia.setForeground(new java.awt.Color(0, 0, 0));
         cmbCiudadResidencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         jPanel1.add(cmbCiudadResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 198, 180, -1));
 
-        cmbGenero.setBackground(new java.awt.Color(255, 255, 255));
         cmbGenero.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbGenero.setForeground(new java.awt.Color(0, 0, 0));
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Masculino", "Femenino" }));
         jPanel1.add(cmbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 198, 180, -1));
 
-        txtDireccion.setForeground(new java.awt.Color(0, 0, 0));
-        txtDireccion.setBorder(null);
+        txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDireccion.setCaretColor(new java.awt.Color(0, 51, 102));
         txtDireccion.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 350, 550, -1));
@@ -203,8 +194,7 @@ public class FrmRegistrate extends javax.swing.JFrame {
         });
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, 156, -1));
 
-        txtEdad.setForeground(new java.awt.Color(0, 0, 0));
-        txtEdad.setBorder(null);
+        txtEdad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtEdad.setCaretColor(new java.awt.Color(0, 51, 102));
         txtEdad.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 118, 180, 20));
@@ -233,8 +223,7 @@ public class FrmRegistrate extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 113, 193));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 78, 140, 10));
 
-        txtUsername.setForeground(new java.awt.Color(0, 0, 0));
-        txtUsername.setBorder(null);
+        txtUsername.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtUsername.setCaretColor(new java.awt.Color(0, 51, 102));
         txtUsername.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 180, 20));
@@ -249,8 +238,7 @@ public class FrmRegistrate extends javax.swing.JFrame {
         jSeparator9.setForeground(new java.awt.Color(0, 113, 193));
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 180, 10));
 
-        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
-        txtPassword.setBorder(null);
+        txtPassword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtPassword.setCaretColor(new java.awt.Color(0, 51, 102));
         txtPassword.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 180, 20));
@@ -265,8 +253,7 @@ public class FrmRegistrate extends javax.swing.JFrame {
         jSeparator10.setForeground(new java.awt.Color(0, 113, 193));
         jPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 180, 10));
 
-        txtPassword2.setForeground(new java.awt.Color(0, 0, 0));
-        txtPassword2.setBorder(null);
+        txtPassword2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtPassword2.setCaretColor(new java.awt.Color(0, 113, 193));
         txtPassword2.setSelectedTextColor(new java.awt.Color(0, 102, 102));
         jPanel1.add(txtPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 180, -1));

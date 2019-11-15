@@ -23,32 +23,52 @@ import modelo.Encuesta;
 public class DAOEncuesta implements IDAOEncuesta {
 
     @Override
-    public boolean agregar(Encuesta encuesta) throws ConexionException {
+    public int agregar(Encuesta encuesta) throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
                     = con.prepareStatement("insert into encuestas (idencuesta, nombre,"
                             + " descripcion, ispublic, fechainicio, fechafin, maximoencuestados, "
                             + "objetivo, edadminima, edadmaxima, generoobjetivo, idsubcategoria) "
-                            + "values ((Select idencuesta from (select idencuesta from encuestas \n"
-                            + "order by idencuesta desc ) \n"
-                            + "where rownum = 1)+1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            + "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             //pstm.setInt(1, encuesta.getId());
-            pstm.setString(1, encuesta.getNombre());
-            pstm.setString(2, encuesta.getDescripcion());
-            pstm.setBoolean(3, encuesta.isPublica());
-            pstm.setDate(4, encuesta.getFechaInicio());
-            pstm.setDate(5, encuesta.getFechaFin());
-            pstm.setInt(6, encuesta.getMaximoEncuestados());
-            pstm.setString(7, encuesta.getObjetivo());
-            pstm.setInt(8, encuesta.getEdadMinima());
-            pstm.setInt(9, encuesta.getEdadMaxima());
-            pstm.setString(10, encuesta.getGeneroObjetivo());
-            pstm.setInt(11, encuesta.getIdSubcategoria());
+            int id = generarId();
+            pstm.setInt(1, id);
+            pstm.setString(2, encuesta.getNombre());
+            pstm.setString(3, encuesta.getDescripcion());
+            pstm.setBoolean(4, encuesta.isPublica());
+            pstm.setDate(5, encuesta.getFechaInicio());
+            pstm.setDate(6, encuesta.getFechaFin());
+            pstm.setInt(7, encuesta.getMaximoEncuestados());
+            pstm.setString(8, encuesta.getObjetivo());
+            pstm.setInt(9, encuesta.getEdadMinima());
+            pstm.setInt(10, encuesta.getEdadMaxima());
+            pstm.setString(11, encuesta.getGeneroObjetivo());
+            pstm.setInt(12, encuesta.getIdSubcategoria());
 
             pstm.executeQuery();
 
-            return true;
+            return id;
 
+        } catch (SQLException ex) {
+//            System.out.println("Error en la conexión");
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
+    
+    public int generarId() throws ConexionException {
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("Select idencuesta from (select idencuesta from encuestas \n"
+                            + "order by idencuesta desc ) where rownum = 1");
+            ResultSet res = pstm.executeQuery();
+            int id = 0;
+            while (res.next()) {
+                id = res.getInt(1)+1;
+            }
+            return id;
+            
         } catch (SQLException ex) {
 //            System.out.println("Error en la conexión");
             System.out.println(ex.getMessage());
@@ -101,6 +121,7 @@ public class DAOEncuesta implements IDAOEncuesta {
                             + "idsubcategoria from encuestas WHERE idEncuesta = ?");
             pstm.setLong(1, idEncuesta);
 
+            
             ResultSet res = pstm.executeQuery();
 
             String nombre;

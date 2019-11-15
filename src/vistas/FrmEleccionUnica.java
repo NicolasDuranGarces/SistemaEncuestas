@@ -155,8 +155,7 @@ public class FrmEleccionUnica extends javax.swing.JInternalFrame {
 
         txtEnunciado.setBackground(new java.awt.Color(0, 113, 193));
         txtEnunciado.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtEnunciado.setForeground(new java.awt.Color(0, 0, 0));
-        txtEnunciado.setBorder(null);
+        txtEnunciado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.add(txtEnunciado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 600, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,8 +169,7 @@ public class FrmEleccionUnica extends javax.swing.JInternalFrame {
         PnlSeleccionDicotomica.setBackground(new java.awt.Color(255, 255, 255));
 
         txtOpcionDicotomica.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtOpcionDicotomica.setForeground(new java.awt.Color(0, 0, 0));
-        txtOpcionDicotomica.setBorder(null);
+        txtOpcionDicotomica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         RdbSeleccionSi.setBackground(new java.awt.Color(255, 255, 255));
         RdbSeleccionSi.setFont(new java.awt.Font("Dubai Light", 1, 14)); // NOI18N
@@ -236,12 +234,10 @@ public class FrmEleccionUnica extends javax.swing.JInternalFrame {
         RdbSeleccion1.setBackground(new java.awt.Color(255, 255, 255));
         BtgSeleccionRespuestaPolitomica.add(RdbSeleccion1);
         RdbSeleccion1.setFont(new java.awt.Font("Dubai Light", 1, 14)); // NOI18N
-        RdbSeleccion1.setForeground(new java.awt.Color(0, 0, 0));
         PnlSeleccionPolitomica.add(RdbSeleccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         txtOpcionPolitomica.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtOpcionPolitomica.setForeground(new java.awt.Color(0, 0, 0));
-        txtOpcionPolitomica.setBorder(null);
+        txtOpcionPolitomica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         PnlSeleccionPolitomica.add(txtOpcionPolitomica, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 494, 20));
 
         jSeparator3.setBackground(new java.awt.Color(102, 102, 102));

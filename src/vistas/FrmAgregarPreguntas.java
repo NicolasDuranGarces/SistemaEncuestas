@@ -22,7 +22,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
     private JInternalFrame subVentana;
     CtlAgregarPreguntas controlador;
-    int idEncuesta;
+    public static int idEncuesta;
     PreguntaEncuesta preguntaQuitar;
 
     /**
@@ -100,7 +100,6 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
         btnAgregarPreguntaNueva.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregarPreguntaNueva.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        btnAgregarPreguntaNueva.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarPreguntaNueva.setText("Añadir Una Nueva Pregunta");
         btnAgregarPreguntaNueva.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAgregarPreguntaNueva.setBorderPainted(false);
@@ -111,12 +110,13 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAgregarPreguntaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 210, 30));
 
-        txtIdEncuesta.setBorder(null);
-        jPanel2.add(txtIdEncuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 149, 130, -1));
+        txtIdEncuesta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        txtIdEncuesta.setMinimumSize(new java.awt.Dimension(4, 19));
+        txtIdEncuesta.setPreferredSize(new java.awt.Dimension(4, 20));
+        jPanel2.add(txtIdEncuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 149, 140, -1));
 
         btnAgregarPreguntaExistente.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregarPreguntaExistente.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        btnAgregarPreguntaExistente.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarPreguntaExistente.setText("Añadir Una Pregunta del Banco");
         btnAgregarPreguntaExistente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAgregarPreguntaExistente.setBorderPainted(false);
@@ -127,9 +127,8 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAgregarPreguntaExistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 250, 30));
 
-        btnFijarEncuesta.setBackground(new java.awt.Color(0, 51, 102));
+        btnFijarEncuesta.setBackground(new java.awt.Color(0, 0, 153));
         btnFijarEncuesta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        btnFijarEncuesta.setForeground(new java.awt.Color(255, 255, 255));
         btnFijarEncuesta.setText("Fijar Encuesta");
         btnFijarEncuesta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 102), new java.awt.Color(0, 102, 102), null, null));
         btnFijarEncuesta.setBorderPainted(false);
@@ -169,7 +168,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
         jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 166, 140, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 138, 10));
 
         jLabel1.setBackground(new java.awt.Color(0, 113, 193));
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N

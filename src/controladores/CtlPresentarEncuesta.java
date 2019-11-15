@@ -9,6 +9,7 @@ import bos.BOEncuesta;
 import bos.BOOpciones;
 import bos.BOPregunta;
 import bos.BOPreguntasEncuesta;
+import bos.BORespuestasUsuario;
 import dtos.DTOPreguntaOpciones;
 import excepciones.ConexionException;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import modelo.Encuesta;
 import modelo.Opcion;
 import modelo.Pregunta;
 import modelo.PreguntaEncuesta;
+import modelo.RespuestaUsuario;
 
 /**
  *
@@ -29,12 +31,14 @@ public class CtlPresentarEncuesta {
     BOOpciones boOpciones;
     BOEncuesta boEncuesta;
     BOPreguntasEncuesta boPreguntaEncuesta;
+    BORespuestasUsuario boRespuestas;
 
     public CtlPresentarEncuesta() {
         boPregunta = new BOPregunta();
         boOpciones = new BOOpciones();
         boEncuesta = new BOEncuesta();
         boPreguntaEncuesta = new BOPreguntasEncuesta();
+        boRespuestas = new BORespuestasUsuario();
     }
     
     
@@ -42,12 +46,16 @@ public class CtlPresentarEncuesta {
 //        return boPregunta.ListadoPregunta();
 //    }
     
-    public ArrayList<Pregunta> listarPreguntas() throws ConexionException{
+    public ArrayList<Pregunta> listarTodasLasPreguntas() throws ConexionException{
         return boPregunta.ListarTodasLasPreguntas();
     }
     
     public ArrayList<PreguntaEncuesta> listarPreguntasEncuesta(int idEncuesta) throws ConexionException{
         return boPreguntaEncuesta.cargarPreguntasEncuesta(idEncuesta);
+    }
+    
+    public ArrayList<Pregunta> listarPreguntasAsociadas(int idEncuesta) throws ConexionException{
+        return boPregunta.ListarPreguntasAsociadas(idEncuesta);
     }
     
     public ArrayList<Opcion> listarOpciones() throws ConexionException{
@@ -57,4 +65,16 @@ public class CtlPresentarEncuesta {
     public ArrayList<Encuesta> listaEncuestas() throws ConexionException{
         return boEncuesta.cargarEncuestas();
     }
+    
+    public boolean guardarRespuestaUnica(RespuestaUsuario respuesta) throws ConexionException{
+        return boRespuestas.agregarRespuestaUnica(respuesta);
+    }
+    
+    public boolean guardarRespuestaMultiple(ArrayList<RespuestaUsuario> listaRespuestas) throws ConexionException{
+        return boRespuestas.agregarRespuestaMultiple(listaRespuestas);
+    }
+    
+//    public ArrayList<RespuestaUsuario> traerMisRespuestas(){
+//        return boRespuestas.traerMisRespuestas();
+//    }
 }

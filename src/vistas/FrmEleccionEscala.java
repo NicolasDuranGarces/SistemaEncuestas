@@ -162,8 +162,7 @@ public class FrmEleccionEscala extends JInternalFrame {
 
         txtEnunciado.setBackground(new java.awt.Color(0, 113, 193));
         txtEnunciado.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtEnunciado.setForeground(new java.awt.Color(0, 0, 0));
-        txtEnunciado.setBorder(null);
+        txtEnunciado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtEnunciado.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(txtEnunciado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 600, 20));
 
@@ -182,8 +181,7 @@ public class FrmEleccionEscala extends JInternalFrame {
         panelNumerico.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 475, 10));
 
         txtOpcionNumerica.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtOpcionNumerica.setForeground(new java.awt.Color(0, 0, 0));
-        txtOpcionNumerica.setBorder(null);
+        txtOpcionNumerica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         panelNumerico.add(txtOpcionNumerica, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 475, 20));
 
         txtRes1.setEnabled(false);
@@ -216,8 +214,7 @@ public class FrmEleccionEscala extends JInternalFrame {
         panelNominal.add(RdbSeleccionSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         txtOpcionNominal.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtOpcionNominal.setForeground(new java.awt.Color(0, 0, 0));
-        txtOpcionNominal.setBorder(null);
+        txtOpcionNominal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         panelNominal.add(txtOpcionNominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 400, 20));
 
         jSeparator7.setBackground(new java.awt.Color(0, 102, 102));

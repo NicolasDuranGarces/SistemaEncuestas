@@ -30,11 +30,11 @@ public class DAOPregunta implements IDAOPregunta {
                             + "order by idpregunta desc ) where rownum = 1");
             ResultSet res = pstm.executeQuery();
             long idPregunta = 0;
-            while (res.next()){
-               idPregunta = (res.getLong(1))+1;             
+            while (res.next()) {
+                idPregunta = (res.getLong(1)) + 1;
             }
             return idPregunta;
-            
+
         } catch (SQLException ex) {
 //            System.out.println("Error en la conexión");
             System.out.println(ex.getMessage());
@@ -42,7 +42,7 @@ public class DAOPregunta implements IDAOPregunta {
             throw new ConexionException();
         }
     }
-    
+
     @Override
     public boolean crear(Pregunta pregunta) throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
@@ -136,8 +136,8 @@ public class DAOPregunta implements IDAOPregunta {
 
             ResultSet res = pstm.executeQuery();
 
-            String enunciado,nombreSubCategoria,nombreCategoria;
-            int tipoPregunta,idSubcategoria, idCategoria;
+            String enunciado, nombreSubCategoria, nombreCategoria;
+            int tipoPregunta, idSubcategoria, idCategoria;
 
             DTOPreguntaOpciones pregunta = null;
 
@@ -161,14 +161,13 @@ public class DAOPregunta implements IDAOPregunta {
             throw new ConexionException();
         }
     }
-    
+
     @Override
     public ArrayList<Pregunta> cargarTodasLasPreguntas() throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
                     = con.prepareStatement("SELECT idpregunta, enunciado, idsubcategoria, "
                             + "tipopregunta from preguntas");
-            
 
             ResultSet res = pstm.executeQuery();
 
@@ -236,7 +235,7 @@ public class DAOPregunta implements IDAOPregunta {
             throw new ConexionException();
         }
     }
-    
+
     @Override
     public ArrayList<Pregunta> cargarPreguntasPorSubcategoria(int idSubcategoria) throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
@@ -302,8 +301,8 @@ public class DAOPregunta implements IDAOPregunta {
             ResultSet res = pstm.executeQuery();
 
             long idPregunta;
-            String enunciado,nombreSubCategoria,nombreCategoria;
-            int tipoPregunta,idSubcategoria, idCategoria; 
+            String enunciado, nombreSubCategoria, nombreCategoria;
+            int tipoPregunta, idSubcategoria, idCategoria;
 
             DTOPreguntaOpciones pregunta = null;
             ArrayList<DTOPreguntaOpciones> lista = new ArrayList();
@@ -318,6 +317,44 @@ public class DAOPregunta implements IDAOPregunta {
                 nombreSubCategoria = res.getString(7);
 
                 pregunta = new DTOPreguntaOpciones(idPregunta, enunciado, tipoPregunta, idSubcategoria, nombreSubCategoria, idCategoria, nombreCategoria);
+                lista.add(pregunta);
+            }
+
+            return lista;
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
+
+    @Override
+    public ArrayList<Pregunta> listarPreguntasAsociadas(int idEncuesta) throws ConexionException {
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT p.idpregunta, p.enunciado, p.idsubcategoria, p.tipopregunta from preguntas p \n"
+                            + "join (SELECT idpregunta, numeropregunta  from preguntas_encuesta \n"
+                            + "where idencuesta = ? ) res on p.idpregunta = res.idpregunta order by res.numeropregunta");
+            pstm.setInt(1, idEncuesta);
+
+            ResultSet res = pstm.executeQuery();
+
+            long idPregunta;
+            String enunciado;
+            int idsubcategoria;
+            int tipopregunta;
+
+            Pregunta pregunta = null;
+            ArrayList<Pregunta> lista = new ArrayList();
+            while (res.next()) {
+
+                idPregunta = res.getInt(1);
+                enunciado = res.getString(2);
+                idsubcategoria = res.getInt(3);
+                tipopregunta = res.getInt(4);
+
+                pregunta = new Pregunta(idPregunta, enunciado, idsubcategoria, tipopregunta);
                 lista.add(pregunta);
             }
 

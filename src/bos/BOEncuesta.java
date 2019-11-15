@@ -25,10 +25,10 @@ public class BOEncuesta {
         daoEncuesta = FabricaDAO.getFabrica().crearDAOEncuesta();
     }
 
-    public boolean crearEncuesta(Encuesta encuesta) throws ConexionException, YaExistenteException {
+    public int crearEncuesta(Encuesta encuesta) throws ConexionException, YaExistenteException {
         if (daoEncuesta.buscar(encuesta.getId()) == null) {
-            daoEncuesta.agregar(encuesta);
-            return true;
+            return daoEncuesta.agregar(encuesta);
+             
         } else {
             throw new YaExistenteException("La encuesta");
         }

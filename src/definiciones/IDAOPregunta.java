@@ -35,4 +35,6 @@ public interface IDAOPregunta {
     public ArrayList<Pregunta> cargarPreguntasPorSubcategoria(int idSubcategoria) throws ConexionException;
 
     public boolean eliminar(long idPregunta) throws ConexionException;
+    
+    public ArrayList<Pregunta> listarPreguntasAsociadas(int idEncuesta) throws ConexionException;
 }

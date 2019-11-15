@@ -21,6 +21,8 @@ import modelo.PreguntaEncuesta;
 public class CtlAgregarPreguntas {
     BOPreguntasEncuesta boPreguntasEncuesta;
     ArrayList<PreguntaEncuesta> listaPreguntasEncuesta;
+    
+    
 
     public CtlAgregarPreguntas() {
         boPreguntasEncuesta = new BOPreguntasEncuesta();

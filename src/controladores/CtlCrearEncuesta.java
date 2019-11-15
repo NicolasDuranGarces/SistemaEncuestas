@@ -56,9 +56,10 @@ public class CtlCrearEncuesta {
     }
 
     public boolean crear(Encuesta encuesta, int idSubcategoria, boolean isAleatoria, int cantidadPreguntas) throws ConexionException, YaExistenteException, PreguntasInsuficientesException {
-        boEncuesta.crearEncuesta(encuesta);
+        int id;
+        id = boEncuesta.crearEncuesta(encuesta);
         if (isAleatoria) {
-            boPreguntasEncuesta.generarCuestionarioAleatorio(encuesta.getId(), cantidadPreguntas, idSubcategoria);
+            boPreguntasEncuesta.generarCuestionarioAleatorio(id, cantidadPreguntas, idSubcategoria);
         }
         return true;
     }

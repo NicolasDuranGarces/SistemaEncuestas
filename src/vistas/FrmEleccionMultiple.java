@@ -74,11 +74,10 @@ public class FrmEleccionMultiple extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CbxSeleccion1.setBackground(new java.awt.Color(255, 255, 255));
-        CbxSeleccion1.setForeground(new java.awt.Color(0, 0, 0));
         CbxSeleccion1.setEnabled(false);
         jPanel1.add(CbxSeleccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        txtOpcionMultiple.setBorder(null);
+        txtOpcionMultiple.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(txtOpcionMultiple, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 500, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 113, 193));
@@ -107,8 +106,7 @@ public class FrmEleccionMultiple extends javax.swing.JInternalFrame {
 
         txtEnunciado.setBackground(new java.awt.Color(0, 113, 193));
         txtEnunciado.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtEnunciado.setForeground(new java.awt.Color(0, 0, 0));
-        txtEnunciado.setBorder(null);
+        txtEnunciado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtEnunciado.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(txtEnunciado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 31, 600, -1));
 
@@ -137,6 +135,7 @@ public class FrmEleccionMultiple extends javax.swing.JInternalFrame {
         btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/agregar-pregunta.png"))); // NOI18N
         btnAgregar.setBorder(null);
+        btnAgregar.setBorderPainted(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -158,7 +157,10 @@ public class FrmEleccionMultiple extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

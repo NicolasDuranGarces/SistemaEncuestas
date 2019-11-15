@@ -44,6 +44,11 @@ public class FrmBancoPreguntas extends JInternalFrame {
         }
         
     }
+    
+    public FrmBancoPreguntas(FrmAgregarPreguntas.idEn){
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

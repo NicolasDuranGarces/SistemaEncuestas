@@ -79,4 +79,8 @@ public class BOPregunta {
     public ArrayList<Pregunta> ListarTodasLasPreguntas() throws ConexionException {
         return dAOPregunta.cargarTodasLasPreguntas();
     }
+    
+    public ArrayList<Pregunta> ListarPreguntasAsociadas(int idEncuesta) throws ConexionException {
+        return dAOPregunta.listarPreguntasAsociadas(idEncuesta);
+    }
 }

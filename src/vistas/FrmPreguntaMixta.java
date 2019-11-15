@@ -80,7 +80,7 @@ public class FrmPreguntaMixta extends javax.swing.JInternalFrame {
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 141, 500, 10));
 
         txtOpcionMixta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtOpcionMixta.setBorder(null);
+        txtOpcionMixta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(txtOpcionMixta, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 118, 500, -1));
 
         tblMixta.setModel(new javax.swing.table.DefaultTableModel(
@@ -107,8 +107,7 @@ public class FrmPreguntaMixta extends javax.swing.JInternalFrame {
 
         txtEnunciado.setBackground(new java.awt.Color(0, 113, 193));
         txtEnunciado.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtEnunciado.setForeground(new java.awt.Color(0, 0, 0));
-        txtEnunciado.setBorder(null);
+        txtEnunciado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtEnunciado.setCaretColor(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N

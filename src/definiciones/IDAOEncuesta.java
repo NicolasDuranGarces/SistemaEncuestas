@@ -15,7 +15,7 @@ import modelo.Encuesta;
  */
 public interface IDAOEncuesta {
     
-    public boolean agregar(Encuesta encuesta) throws ConexionException;
+    public int agregar(Encuesta encuesta) throws ConexionException;
     
     public boolean modificar(Encuesta encuesta) throws ConexionException;
     

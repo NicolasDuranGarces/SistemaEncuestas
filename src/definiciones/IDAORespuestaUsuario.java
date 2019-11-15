@@ -18,8 +18,8 @@ public interface IDAORespuestaUsuario {
     
     public boolean modificar(RespuestaUsuario respuesta) throws ConexionException;
     
-    public RespuestaUsuario buscar(int idEncuesta, int numeroPregunta) throws ConexionException;
+    public RespuestaUsuario buscar(RespuestaUsuario respuesta) throws ConexionException;
     
-    public boolean eliminar(int idEncuesta, int numeroPregunta) throws ConexionException;
+    public boolean eliminar(int idEncuesta, int numeroPregunta, long dni) throws ConexionException;
     
 }

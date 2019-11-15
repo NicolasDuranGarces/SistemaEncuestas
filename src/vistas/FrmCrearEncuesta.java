@@ -51,12 +51,10 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
-        txtIdEncuesta = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jdtFechaFin = new com.toedter.calendar.JDateChooser();
         jdtFechaInicio = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         optPrivada = new javax.swing.JRadioButton();
         optPublica = new javax.swing.JRadioButton();
@@ -84,7 +82,6 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jspCantidadPreguntas = new javax.swing.JSpinner();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
@@ -100,7 +97,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNombre.setBorder(null);
+        txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtNombre.setCaretColor(new java.awt.Color(0, 113, 193));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 175, -1));
 
@@ -122,23 +119,15 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 469, 110, -1));
 
-        txtIdEncuesta.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtIdEncuesta.setToolTipText("");
-        txtIdEncuesta.setBorder(null);
-        txtIdEncuesta.setCaretColor(new java.awt.Color(0, 113, 193));
-        jPanel1.add(txtIdEncuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 175, -1));
-
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 113, 193));
         jLabel4.setText("Descripción: ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 106, -1, -1));
 
         jdtFechaFin.setBackground(new java.awt.Color(255, 255, 255));
-        jdtFechaFin.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jdtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 419, 173, -1));
 
         jdtFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        jdtFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jdtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 373, 173, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 51, 102));
@@ -148,11 +137,6 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jButton1.setText("Buscar Encuesta");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 469, 163, -1));
-
-        jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 113, 193));
-        jLabel1.setText("Id Encuesta");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 113, 193));
@@ -234,9 +218,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jLabel11.setText("Categoria");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
 
-        cmbCategoria.setBackground(new java.awt.Color(255, 255, 255));
         cmbCategoria.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbCategoria.setForeground(new java.awt.Color(0, 0, 0));
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,9 +232,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jLabel12.setText("SubCategoria");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(688, 56, -1, -1));
 
-        cmbSubcategoria.setBackground(new java.awt.Color(255, 255, 255));
         cmbSubcategoria.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbSubcategoria.setForeground(new java.awt.Color(0, 0, 0));
         cmbSubcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbSubcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,9 +260,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         Genero.setText("Genero");
         jPanel1.add(Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(694, 267, -1, -1));
 
-        cmbGenero.setBackground(new java.awt.Color(255, 255, 255));
         cmbGenero.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbGenero.setForeground(new java.awt.Color(0, 0, 0));
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hombres", "Mujeres" }));
         cmbGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,11 +291,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
 
         jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 175, 10));
-
-        jSeparator2.setBackground(new java.awt.Color(102, 102, 102));
-        jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 170, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 175, 10));
 
         jSeparator3.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
@@ -368,7 +342,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         try {
-            int id = Integer.parseInt(txtIdEncuesta.getText());
+            int id = 0;
             String nombre = txtNombre.getText();
             String descripcion = txaDescripcion.getText();
             boolean publica = true;
@@ -392,7 +366,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
             }
             idSubcategoria = controlador.getListaSubcategorias().get(cmbSubcategoria.getSelectedIndex()).getId();
             Encuesta encuesta = new Encuesta(id, nombre, descripcion, publica, fechaInicio, fechaFin, maximoEncuestados, objetivo, edadMinima, edadMaxima, generoObjetivo, idSubcategoria);
-            controlador.crear(encuesta, idCategoria, isAleatoria, cantidadPreguntas);
+            controlador.crear(encuesta, idSubcategoria, isAleatoria, cantidadPreguntas);
             limpiar();
             JOptionPane.showMessageDialog(this, "Encuesta creada satisfactoriamente");
 
@@ -447,7 +421,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
     }
     
     public void limpiar(){
-        txtIdEncuesta.setText("");
+        
         txtNombre.setText("");
         txaDescripcion.setText("");
         optPublica.setSelected(true);
@@ -514,7 +488,6 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cmbSubcategoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -533,7 +506,6 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -548,7 +520,6 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton optPublica;
     private javax.swing.JTextArea txaDescripcion;
     private javax.swing.JTextArea txaObjetivo;
-    private javax.swing.JTextField txtIdEncuesta;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

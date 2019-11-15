@@ -51,8 +51,8 @@ public class DAORespuestaUsuario implements IDAORespuestaUsuario{
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
                     = con.prepareStatement("update respuestas_usuarios set idencuesta = ?, numeropregunta = ?, dni = ?, "
-                            + "idpregunta = ?, idopcion = ?, respuestaabierta ?, ordenranking = ? "
-                            + "where idencuesta = ? and numeropregunta = ? ");
+                            + "idpregunta = ?, idopcion = ?, respuestaabierta = ?, ordenranking = ? "
+                            + "where idencuesta = ? and numeropregunta = ? and dni = ?");
             pstm.setInt(1, respuesta.getIdEncuesta());
             pstm.setInt(2, respuesta.getNumeroPregunta());
             pstm.setLong(3, respuesta.getDni());
@@ -62,7 +62,8 @@ public class DAORespuestaUsuario implements IDAORespuestaUsuario{
             pstm.setInt(7, respuesta.getOrdenRanking());
             pstm.setInt(8, respuesta.getIdEncuesta());
             pstm.setInt(9, respuesta.getNumeroPregunta());
-
+            pstm.setLong(10, respuesta.getDni());
+//            System.out.println(pstm);
             pstm.executeQuery();
 
             return true;
@@ -77,38 +78,44 @@ public class DAORespuestaUsuario implements IDAORespuestaUsuario{
     
     
     @Override
-    public RespuestaUsuario buscar(int idEncuesta, int numeroPregunta) throws ConexionException {
+    public RespuestaUsuario buscar(RespuestaUsuario respuesta) throws ConexionException {
+        
+        int idEncuesta = respuesta.getIdEncuesta();
+        int numeroPregunta = respuesta.getNumeroPregunta();
+        long dni = respuesta.getDni();
+        
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
                     = con.prepareStatement("SELECT idencuesta, numeropregunta, dni, idpregunta, "
                     + "idopcion, respuestaabierta, ordenranking from respuestas_usuarios "
-                            + "where idencuesta = ? and numeropregunta = ? ");
+                            + "where idencuesta = ? and numeropregunta = ? and dni = ?");
             pstm.setInt(1, idEncuesta);
             pstm.setInt(2, numeroPregunta);
+            pstm.setLong(3, dni);
 
             ResultSet res = pstm.executeQuery();
 
             
-            long dni;
+            
             long idPregunta;
             int idopcion;
             String respuestaAbierta;
             int ordenRanking;
             
-            RespuestaUsuario respuesta = null;
+            RespuestaUsuario respuestaBD = null;
 
             while (res.next()) {
                 
-                dni = res.getLong(3);
+                
                 idPregunta = res.getLong(4);
                 idopcion = res.getInt(5);
                 respuestaAbierta = res.getString(6);
                 ordenRanking = res.getInt(7);
                 
-                respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni, idPregunta, idopcion, respuestaAbierta, ordenRanking);
+                respuestaBD = new RespuestaUsuario(idEncuesta, numeroPregunta, dni, idPregunta, idopcion, respuestaAbierta, ordenRanking);
             }
 
-            return respuesta;
+            return respuestaBD;
 
         } catch (SQLException ex) {
             System.out.println("Error en la conexión");
@@ -118,12 +125,13 @@ public class DAORespuestaUsuario implements IDAORespuestaUsuario{
     }
     
     @Override
-    public boolean eliminar(int idEncuesta, int numeroPregunta) throws ConexionException{
+    public boolean eliminar(int idEncuesta, int numeroPregunta, long dni) throws ConexionException{
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
-                    = con.prepareStatement("delete from respuestas_usuarios where idencuesta = ? and numeropregunta = ? ");
+                    = con.prepareStatement("delete from respuestas_usuarios where idencuesta = ? and numeropregunta = ? and dni = ?");
             pstm.setInt(1, idEncuesta);
             pstm.setInt(2, numeroPregunta);
+            pstm.setLong(3, dni);
             
             pstm.executeQuery();
 

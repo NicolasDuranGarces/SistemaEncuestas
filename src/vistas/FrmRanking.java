@@ -79,8 +79,7 @@ public class FrmRanking extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtOpcionranking.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtOpcionranking.setForeground(new java.awt.Color(0, 0, 0));
-        txtOpcionranking.setBorder(null);
+        txtOpcionranking.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(txtOpcionranking, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 475, 20));
 
         jSeparator2.setBackground(new java.awt.Color(0, 113, 193));
@@ -108,8 +107,7 @@ public class FrmRanking extends javax.swing.JInternalFrame {
 
         txtEnunciado.setBackground(new java.awt.Color(0, 113, 193));
         txtEnunciado.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        txtEnunciado.setForeground(new java.awt.Color(0, 0, 0));
-        txtEnunciado.setBorder(null);
+        txtEnunciado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtEnunciado.setCaretColor(new java.awt.Color(255, 255, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
