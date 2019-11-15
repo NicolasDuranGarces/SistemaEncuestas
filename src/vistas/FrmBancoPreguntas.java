@@ -45,7 +45,20 @@ public class FrmBancoPreguntas extends JInternalFrame {
         
     }
     
-    public FrmBancoPreguntas(FrmAgregarPreguntas.idEn){
+    public FrmBancoPreguntas(int id){
+        initComponents();
+        controlador = new CtlBancoPreguntas();
+        setVisible(true);
+        setMaximizable(false);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        
+        try {
+            controlador.cargarPreguntas();
+            tblListado.setModel(controlador.listarPreguntas());
+            cargarCategorias();
+        } catch (ConexionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
         
     }
     
