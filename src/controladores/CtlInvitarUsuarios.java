@@ -10,6 +10,7 @@ import bos.BOParticipantes;
 import bos.BOUsuario;
 import excepciones.ConexionException;
 import excepciones.NoExistenteException;
+import excepciones.ParticipanteYaAsociadoException;
 import excepciones.UsuarioNoexisteExcepcion;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -72,6 +73,8 @@ public class CtlInvitarUsuarios {
     }
 
     public void cargarParticipantesEncuesta(int idEncuesta) throws ConexionException, UsuarioNoexisteExcepcion {
+        listaParticipantes = new ArrayList<>();
+        listaUsuariosParticipantes = new ArrayList<>();
         listaParticipantes = boParticipantes.listar(idEncuesta);
         for (int i = 0; i < listaParticipantes.size(); i++) {
             listaUsuariosParticipantes.add(boUsuario.buscar(listaParticipantes.get(i).getDni()));
@@ -97,7 +100,7 @@ public class CtlInvitarUsuarios {
 
     public DefaultTableModel listarParticipantesEncuesta() throws ConexionException {
 
-        String[] nombreColumnas = {"ID Pregunta", "Número Pregunta", "ID Pregunta Requisito", "ID Opción Requisito"};
+        String[] nombreColumnas = {"DNI", "Nombre", "Apellido", "Edad", "Género"};
         DefaultTableModel modelo;
         modelo = new DefaultTableModel(null, nombreColumnas);
         if (listaUsuariosParticipantes.size()>0) {
@@ -113,4 +116,22 @@ public class CtlInvitarUsuarios {
         }
         return modelo;
     }
+    
+    public Usuario cargarUsuarioSeleccionado(int pos) {
+        return listaUsuarios.get(pos);
+    }
+    
+    public Usuario cargarParticipanteSeleccionado(int pos) {
+        return listaUsuariosParticipantes.get(pos);
+    }
+    
+    public boolean agregarALista(long dni, int idEncuesta) throws ConexionException, ParticipanteYaAsociadoException {
+        Participante participante = new Participante(dni, idEncuesta);
+        return boParticipantes.agregar(participante);
+    }
+    
+    public boolean quitarDeLista(long dni, int idEncuesta) throws ConexionException {
+        return boParticipantes.quitar(dni, idEncuesta);
+    }
+    
 }

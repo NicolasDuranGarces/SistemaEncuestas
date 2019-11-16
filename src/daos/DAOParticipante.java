@@ -43,37 +43,40 @@ public class DAOParticipante implements IDAOParticipante{
     }
         
     
-//    public Participante buscar(long dni, int idEncuesta) throws ConexionException {
-//        try (Connection con = FabricaConexion.getConexion()) {
-//            PreparedStatement pstm
-//                    = con.prepareStatement("SELECT dni, idencuesta,"
-//                    + " from participantes where dni = ? and idencuesta = ?");
-//            pstm.setLong(1, dni);
-//            pstm.setInt(2, idEncuesta);
-//            
-//            ResultSet res = pstm.executeQuery();
-//
-//            
-//            String nombre;
-//            
-//
-//            Participante participante = null;
-//
-//            while (res.next()) {
-//                
-//                nombre = res.getString(2);
-//                
-//                participante = new Participante(dni, idEncuesta);
-//            }
-//
-//            return participante;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("Error en la conexión");
-//            ex.printStackTrace();
-//            throw new ConexionException();
-//        }
-//    }
+    @Override
+    public Participante buscar(Participante participante) throws ConexionException {
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT dni, idencuesta"
+                    + " from participantes where dni = ? and idencuesta = ?");
+            pstm.setLong(1, participante.getDni());
+            pstm.setInt(2, participante.getIdEncuesta());
+            
+            ResultSet res = pstm.executeQuery();
+
+            
+            Long dni;
+            int idEncuesta;
+            
+
+            Participante participante2 = null;
+
+            while (res.next()) {
+                
+                dni = res.getLong(1);
+                idEncuesta = res.getInt(2);
+                
+                participante2 = new Participante(dni, idEncuesta);
+            }
+
+            return participante2;
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
     
     @Override
     public boolean eliminar(long dni, int idEncuesta) throws ConexionException{

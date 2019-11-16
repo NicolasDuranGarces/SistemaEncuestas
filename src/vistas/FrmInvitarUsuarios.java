@@ -9,30 +9,49 @@ import controladores.CtlInvitarUsuarios;
 import controladores.CtlUsuario;
 import excepciones.ConexionException;
 import excepciones.NoExistenteException;
+import excepciones.ParticipanteYaAsociadoException;
 import excepciones.UsuarioNoexisteExcepcion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
  * @author nicolasdurangarces
  */
 public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
+
     CtlInvitarUsuarios controlador;
     int idEncuesta;
+    Usuario usuarioAgregar;
+    Usuario participanteQuitar;
+
     /**
      * Creates new form FrmInvitarUsuarios
      */
 //    CtlUsuario controladorUsuario;
-    public FrmInvitarUsuarios() throws ConexionException {
+    public FrmInvitarUsuarios() {
+        idEncuesta = 0;
         controlador = new CtlInvitarUsuarios();
         initComponents();
         setVisible(true);
         setMaximizable(false);
 //        controladorUsuario = new CtlUsuario();
-        controlador.cargarUsuarios();
-        tblUsuarios.setModel(controlador.listarUsuarios());
+        listarUsuarios();
+    }
+
+    public FrmInvitarUsuarios(int idEncu) {
+        idEncuesta = idEncu;
+        controlador = new CtlInvitarUsuarios();
+        initComponents();
+        setVisible(true);
+        setMaximizable(false);
+        listarUsuarios();
+        txtIdEncuesta.setText(idEncuesta + "");
+        btnFijarEncuesta.doClick();
+        btnFijarEncuesta.setVisible(false);
     }
 
     /**
@@ -57,14 +76,15 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         txtIdEncuesta = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnQuitar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblParticipantes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
+        btnAgregarPreguntas = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,15 +210,25 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 130));
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/borrar-usuario (1).png"))); // NOI18N
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 50, 40));
+        btnQuitar.setBackground(new java.awt.Color(0, 51, 102));
+        btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/borrar-usuario (1).png"))); // NOI18N
+        btnQuitar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnQuitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 50, 40));
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/agregar-usuario.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 50, 40));
+        btnAgregar.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/agregar-usuario.png"))); // NOI18N
+        btnAgregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 50, 40));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -216,6 +246,11 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         ));
         tblParticipantes.setGridColor(new java.awt.Color(0, 0, 0));
         tblParticipantes.setSelectionBackground(new java.awt.Color(0, 113, 193));
+        tblParticipantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblParticipantesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblParticipantes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -253,6 +288,11 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         ));
         tblUsuarios.setGridColor(new java.awt.Color(0, 0, 0));
         tblUsuarios.setSelectionBackground(new java.awt.Color(0, 113, 193));
+        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -274,6 +314,17 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
 
         jPanel5.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 610, -1));
 
+        btnAgregarPreguntas.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregarPreguntas.setFont(new java.awt.Font("Dubai Light", 1, 18)); // NOI18N
+        btnAgregarPreguntas.setText("Agregar Preguntas a esta Encuesta");
+        btnAgregarPreguntas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarPreguntas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPreguntasActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnAgregarPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 580, 330, 50));
+
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1365, 690));
 
         pack();
@@ -286,11 +337,11 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
 
     private void btnFijarEncuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFijarEncuestaActionPerformed
         try {
-            
+
             idEncuesta = Integer.parseInt(txtIdEncuesta.getText());
-            if (controlador.verificarEncuestaPrivada(idEncuesta)){
-            listar();
-            txtIdEncuesta.setEnabled(false);
+            if (controlador.verificarEncuestaPrivada(idEncuesta)) {
+                listar();
+                txtIdEncuesta.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(this, "La encuesta que intenta fijar es pública");
                 txtIdEncuesta.setText("");
@@ -302,20 +353,83 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnFijarEncuestaActionPerformed
 
-    
-    public void listar() throws ConexionException {
+    private void tblParticipantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblParticipantesMouseClicked
+        int pos = tblParticipantes.getSelectedRow();
+
+        if (pos >= 0) {
+            participanteQuitar = controlador.cargarParticipanteSeleccionado(pos);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        }
+    }//GEN-LAST:event_tblParticipantesMouseClicked
+
+    private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
+        int pos = tblUsuarios.getSelectedRow();
+
+        if (pos >= 0) {
+            usuarioAgregar = controlador.cargarUsuarioSeleccionado(pos);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro");
+        }
+    }//GEN-LAST:event_tblUsuariosMouseClicked
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if (idEncuesta == 0) {
+            JOptionPane.showMessageDialog(this, "Debe fijar una encuesta antes de comenzar a añadir usuarios");
+        } else {
+            try {
+                controlador.agregarALista(usuarioAgregar.getDni(), idEncuesta);
+                usuarioAgregar = null;
+                listar();
+            } catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un usuario \npara agregar");
+            } catch (ConexionException | ParticipanteYaAsociadoException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         try {
-        controlador.cargarUsuarios();
-        
-        controlador.cargarParticipantesEncuesta(idEncuesta);
-        
-        tblUsuarios.setModel(controlador.listarUsuarios());
-        tblParticipantes.setModel(controlador.listarParticipantesEncuesta());
-        } catch(UsuarioNoexisteExcepcion | ConexionException ex) {
+            controlador.quitarDeLista(participanteQuitar.getDni(), idEncuesta);
+            participanteQuitar = null;
+            listar();
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un participante \npara quitar");
+        } catch (ConexionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnQuitarActionPerformed
+
+    private void btnAgregarPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntasActionPerformed
+        JInternalFrame agregarPreguntas = new FrmAgregarPreguntas(idEncuesta, FrmCrearEncuesta.idSubcategoria);
+
+        MenuPrincipal.panelInterno1.remove(MenuPrincipal.ventanaActual);
+        MenuPrincipal.panelInterno1.repaint();
+        MenuPrincipal.ventanaActual = agregarPreguntas;
+        MenuPrincipal.panelInterno1.add(MenuPrincipal.ventanaActual);
+    }//GEN-LAST:event_btnAgregarPreguntasActionPerformed
+
+    public void listarUsuarios() {
+        try {
+            controlador.cargarUsuarios();
+            tblUsuarios.setModel(controlador.listarUsuarios());
+
+        } catch (ConexionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
-    
+
+    public void listar() {
+        try {
+            controlador.cargarParticipantesEncuesta(idEncuesta);
+            tblParticipantes.setModel(controlador.listarParticipantesEncuesta());
+
+        } catch (UsuarioNoexisteExcepcion | ConexionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -346,19 +460,16 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new FrmInvitarUsuarios().setVisible(true);
-                } catch (ConexionException ex) {
-                   JOptionPane.showMessageDialog(null, ex.getMessage());
-                }
+                new FrmInvitarUsuarios().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregarPreguntas;
     private javax.swing.JButton btnFijarEncuesta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnQuitar;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

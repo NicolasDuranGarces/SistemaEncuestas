@@ -19,10 +19,9 @@ import modelo.PreguntaEncuesta;
  * @author jose
  */
 public class CtlAgregarPreguntas {
+
     BOPreguntasEncuesta boPreguntasEncuesta;
     ArrayList<PreguntaEncuesta> listaPreguntasEncuesta;
-    
-    
 
     public CtlAgregarPreguntas() {
         boPreguntasEncuesta = new BOPreguntasEncuesta();
@@ -36,13 +35,11 @@ public class CtlAgregarPreguntas {
     public void setListaPreguntasEncuesta(ArrayList<PreguntaEncuesta> listaPreguntasEncuesta) {
         this.listaPreguntasEncuesta = listaPreguntasEncuesta;
     }
-    
-    
-    
-    public void cargarPreguntasEncuesta(int idEncuesta) throws ConexionException{
+
+    public void cargarPreguntasEncuesta(int idEncuesta) throws ConexionException {
         setListaPreguntasEncuesta(boPreguntasEncuesta.cargarPreguntasEncuesta(idEncuesta));
     }
-    
+
     public DefaultTableModel listarPreguntasEncuesta() throws ConexionException {
 
         String[] nombreColumnas = {"ID Pregunta", "Número Pregunta", "ID Pregunta Requisito", "ID Opción Requisito"};
@@ -58,21 +55,21 @@ public class CtlAgregarPreguntas {
         }
         return modelo;
     }
-    
-    public boolean agregarAEncuesta(DTOPreguntaOpciones preguntaAgregar, int idEncuesta) 
-            throws ConexionException, PreguntaYaEnLaEncuestaException{
-        
-        int numeroPregunta = listaPreguntasEncuesta.size()+1;
-        
+
+    public boolean agregarAEncuesta(DTOPreguntaOpciones preguntaAgregar, int idEncuesta)
+            throws ConexionException, PreguntaYaEnLaEncuestaException {
+
+        int numeroPregunta = listaPreguntasEncuesta.size() + 1;
+
         PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta(idEncuesta, preguntaAgregar.getIdPregunta(), numeroPregunta, 0, 0);
         return boPreguntasEncuesta.agregarPreguntaALaEncuesta(preguntaEncuesta);
     }
-    
-    public boolean quitarDeEncuesta(int idEncuesta, int numeroPregunta) throws ConexionException{
+
+    public boolean quitarDeEncuesta(int idEncuesta, int numeroPregunta) throws ConexionException {
         return boPreguntasEncuesta.quitarPreguntaDeLaEncuesta(idEncuesta, numeroPregunta);
     }
-    
-    public PreguntaEncuesta cargarPreguntaSeleccionada(int pos){
+
+    public PreguntaEncuesta cargarPreguntaSeleccionada(int pos) {
         return listaPreguntasEncuesta.get(pos);
     }
 }

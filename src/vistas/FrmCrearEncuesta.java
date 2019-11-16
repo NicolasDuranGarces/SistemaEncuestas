@@ -20,7 +20,7 @@ import modelo.Encuesta;
  */
 public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
 
-    int idSubcategoria;
+    public static int idSubcategoria;
     int idCategoria;
     int idEncuesta;
     CtlCrearEncuesta controlador;
@@ -30,6 +30,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
      */
     public FrmCrearEncuesta() {
         initComponents();
+        btnAgregarParticipantes.setEnabled(false);
         controlador = new CtlCrearEncuesta();
         optPublica.setSelected(true);
         jspCantidadPreguntas.setEnabled(false);
@@ -88,7 +89,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        btnAgregarPreguntas = new javax.swing.JButton();
+        btnAgregarParticipantes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
@@ -150,6 +151,11 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         optPrivada.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         optPrivada.setForeground(new java.awt.Color(0, 113, 193));
         optPrivada.setText("Privada");
+        optPrivada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optPrivadaActionPerformed(evt);
+            }
+        });
         jPanel1.add(optPrivada, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 214, -1, -1));
 
         optPublica.setBackground(new java.awt.Color(255, 255, 255));
@@ -157,6 +163,11 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         optPublica.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         optPublica.setForeground(new java.awt.Color(0, 113, 193));
         optPublica.setText("Publica");
+        optPublica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optPublicaActionPerformed(evt);
+            }
+        });
         jPanel1.add(optPublica, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 214, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -311,16 +322,16 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jSeparator6.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 400, 40, 10));
 
-        btnAgregarPreguntas.setBackground(new java.awt.Color(0, 51, 102));
-        btnAgregarPreguntas.setFont(new java.awt.Font("Dubai Light", 1, 18)); // NOI18N
-        btnAgregarPreguntas.setText("Agregar Preguntas a esta Encuesta");
-        btnAgregarPreguntas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAgregarPreguntas.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarParticipantes.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregarParticipantes.setFont(new java.awt.Font("Dubai Light", 1, 18)); // NOI18N
+        btnAgregarParticipantes.setText("Agegar Participantes a esta encuesta");
+        btnAgregarParticipantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarParticipantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPreguntasActionPerformed(evt);
+                btnAgregarParticipantesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 470, 330, 40));
+        jPanel1.add(btnAgregarParticipantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, 340, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 82, 1170, 540));
 
@@ -422,17 +433,22 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cmbCategoriaActionPerformed
 
-    private void btnAgregarPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntasActionPerformed
-        JInternalFrame agregarPreguntas = new FrmAgregarPreguntas(idEncuesta, idSubcategoria);
-//        this.dispose();
-//        agregarPreguntas.setVisible(true);
-        
+    private void btnAgregarParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarParticipantesActionPerformed
+        JInternalFrame invitarUsuarios = new FrmInvitarUsuarios(idEncuesta);
         
         MenuPrincipal.panelInterno1.remove(MenuPrincipal.ventanaActual);
         MenuPrincipal.panelInterno1.repaint();
-        MenuPrincipal.ventanaActual = agregarPreguntas;
+        MenuPrincipal.ventanaActual = invitarUsuarios;
         MenuPrincipal.panelInterno1.add(MenuPrincipal.ventanaActual);
-    }//GEN-LAST:event_btnAgregarPreguntasActionPerformed
+    }//GEN-LAST:event_btnAgregarParticipantesActionPerformed
+
+    private void optPrivadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optPrivadaActionPerformed
+        btnAgregarParticipantes.setEnabled(true);
+    }//GEN-LAST:event_optPrivadaActionPerformed
+
+    private void optPublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optPublicaActionPerformed
+        btnAgregarParticipantes.setEnabled(false);
+    }//GEN-LAST:event_optPublicaActionPerformed
 
     public void cargarCategorias() {
         try{
@@ -506,7 +522,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Genero;
     private javax.swing.ButtonGroup btgTipoEncuesta;
-    private javax.swing.JButton btnAgregarPreguntas;
+    private javax.swing.JButton btnAgregarParticipantes;
     private javax.swing.JButton btnCrear;
     private javax.swing.JCheckBox chkAutomatica;
     private javax.swing.JComboBox<String> cmbCategoria;

@@ -18,6 +18,8 @@ public interface IDAOParticipante {
     
     public boolean agregar(Participante participante) throws ConexionException;
             
+    public Participante buscar(Participante participante) throws ConexionException;
+    
     public boolean eliminar(long dni, int idEncuesta) throws ConexionException;
     
     public ArrayList<Participante> listar(int idEncuesta) throws ConexionException;
