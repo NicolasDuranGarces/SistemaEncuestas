@@ -66,4 +66,8 @@ public class BOUsuario {
     public ArrayList<Usuario> listar() throws ConexionException{
         return daoUsuario.listar();
     }
+    
+    public ArrayList<Usuario> listarPor() throws ConexionException{
+        return daoUsuario.listar();
+    }
 }

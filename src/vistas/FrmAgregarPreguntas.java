@@ -412,6 +412,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         try {
             idEncuesta = Integer.parseInt(txtIdEncuesta.getText());
             listar();
+            txtIdEncuesta.setEnabled(false);
         } catch (ConexionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }

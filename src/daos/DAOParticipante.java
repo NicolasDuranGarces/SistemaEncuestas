@@ -10,7 +10,9 @@ import definiciones.IDAOParticipante;
 import excepciones.ConexionException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import modelo.Participante;
 
 /**
@@ -87,6 +89,37 @@ public class DAOParticipante implements IDAOParticipante{
         } catch (SQLException ex) {
 //            System.out.println("Error en la conexión");
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
+    
+    public ArrayList<Participante> listar(int idEncuesta) throws ConexionException{
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT dni from participantes where idencuesta = ? ");
+            pstm.setInt(1, idEncuesta);
+
+            ResultSet res = pstm.executeQuery();
+            
+            long dni;
+
+            Participante participante = null;
+            ArrayList<Participante> lista = new ArrayList<>();
+
+            while (res.next()) {
+
+                dni = res.getLong(1);
+                
+
+                participante = new Participante(dni, idEncuesta);
+                lista.add(participante);
+            }
+
+            return lista;
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
             ex.printStackTrace();
             throw new ConexionException();
         }

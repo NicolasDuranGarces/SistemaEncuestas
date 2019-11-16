@@ -5,8 +5,11 @@
  */
 package vistas;
 
+import controladores.CtlInvitarUsuarios;
 import controladores.CtlUsuario;
 import excepciones.ConexionException;
+import excepciones.NoExistenteException;
+import excepciones.UsuarioNoexisteExcepcion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,17 +19,20 @@ import javax.swing.JOptionPane;
  * @author nicolasdurangarces
  */
 public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
-
+    CtlInvitarUsuarios controlador;
+    int idEncuesta;
     /**
      * Creates new form FrmInvitarUsuarios
      */
-    CtlUsuario controladorUsuario;
+//    CtlUsuario controladorUsuario;
     public FrmInvitarUsuarios() throws ConexionException {
+        controlador = new CtlInvitarUsuarios();
         initComponents();
         setVisible(true);
         setMaximizable(false);
-        controladorUsuario = new CtlUsuario();
-        tblUsuarios.setModel(controladorUsuario.listarUsuario(tblUsuarios));
+//        controladorUsuario = new CtlUsuario();
+        controlador.cargarUsuarios();
+        tblUsuarios.setModel(controlador.listarUsuarios());
     }
 
     /**
@@ -40,22 +46,25 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnFijarEncuesta = new javax.swing.JButton();
+        txtIdEncuesta = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblUsuarios = new javax.swing.JTable();
+        tblParticipantes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblSeleccionados = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,18 +85,6 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(1365, 670));
         setPreferredSize(new java.awt.Dimension(1365, 670));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel2.setBackground(new java.awt.Color(0, 113, 193));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 153), new java.awt.Color(0, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/usuarios.png"))); // NOI18N
-        jLabel1.setText("Lista de Usuarios");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 53, 287, 51));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setMaximumSize(new java.awt.Dimension(1365, 690));
@@ -125,24 +122,70 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/listado.png"))); // NOI18N
-        jLabel2.setText("Usuarios Seleccionados");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        jLabel2.setText("Usuarios Participantes");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 50));
+
+        jLabel3.setBackground(new java.awt.Color(0, 113, 193));
+        jLabel3.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Id Encuesta :");
+
+        btnFijarEncuesta.setBackground(new java.awt.Color(0, 0, 153));
+        btnFijarEncuesta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        btnFijarEncuesta.setText("Fijar Encuesta");
+        btnFijarEncuesta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 102), new java.awt.Color(0, 102, 102), null, null));
+        btnFijarEncuesta.setBorderPainted(false);
+        btnFijarEncuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFijarEncuestaActionPerformed(evt);
+            }
+        });
+
+        txtIdEncuesta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        txtIdEncuesta.setMinimumSize(new java.awt.Dimension(4, 19));
+        txtIdEncuesta.setPreferredSize(new java.awt.Dimension(4, 20));
+
+        jPanel2.setBackground(new java.awt.Color(0, 113, 193));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 153), new java.awt.Color(0, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/usuarios.png"))); // NOI18N
+        jLabel1.setText("Lista de Usuarios");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(848, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159))
+                .addGap(48, 48, 48)
+                .addComponent(jLabel3)
+                .addGap(11, 11, 11)
+                .addComponent(txtIdEncuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnFijarEncuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFijarEncuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdEncuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 130));
@@ -160,8 +203,7 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblUsuarios.setForeground(new java.awt.Color(0, 0, 0));
-        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblParticipantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -172,10 +214,9 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblUsuarios.setGridColor(new java.awt.Color(0, 0, 0));
-        tblUsuarios.setSelectionBackground(new java.awt.Color(0, 113, 193));
-        tblUsuarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(tblUsuarios);
+        tblParticipantes.setGridColor(new java.awt.Color(0, 0, 0));
+        tblParticipantes.setSelectionBackground(new java.awt.Color(0, 113, 193));
+        jScrollPane1.setViewportView(tblParticipantes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,8 +240,7 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblSeleccionados.setForeground(new java.awt.Color(0, 0, 0));
-        tblSeleccionados.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -211,10 +251,9 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblSeleccionados.setGridColor(new java.awt.Color(0, 0, 0));
-        tblSeleccionados.setSelectionBackground(new java.awt.Color(0, 113, 193));
-        tblSeleccionados.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane4.setViewportView(tblSeleccionados);
+        tblUsuarios.setGridColor(new java.awt.Color(0, 0, 0));
+        tblUsuarios.setSelectionBackground(new java.awt.Color(0, 113, 193));
+        jScrollPane4.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -245,6 +284,38 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnFijarEncuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFijarEncuestaActionPerformed
+        try {
+            
+            idEncuesta = Integer.parseInt(txtIdEncuesta.getText());
+            if (controlador.verificarEncuestaPrivada(idEncuesta)){
+            listar();
+            txtIdEncuesta.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "La encuesta que intenta fijar es pública");
+                txtIdEncuesta.setText("");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El id tiene un formato incorrecto, ingrese solo números enteros");
+        } catch (ConexionException | NoExistenteException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnFijarEncuestaActionPerformed
+
+    
+    public void listar() throws ConexionException {
+        try {
+        controlador.cargarUsuarios();
+        
+        controlador.cargarParticipantesEncuesta(idEncuesta);
+        
+        tblUsuarios.setModel(controlador.listarUsuarios());
+        tblParticipantes.setModel(controlador.listarParticipantesEncuesta());
+        } catch(UsuarioNoexisteExcepcion | ConexionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -285,12 +356,14 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFijarEncuesta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -301,7 +374,8 @@ public class FrmInvitarUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable tblSeleccionados;
+    private javax.swing.JTable tblParticipantes;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTextField txtIdEncuesta;
     // End of variables declaration//GEN-END:variables
 }

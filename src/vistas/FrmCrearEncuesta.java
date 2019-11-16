@@ -111,7 +111,6 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
 
         btnCrear.setBackground(new java.awt.Color(0, 51, 102));
         btnCrear.setFont(new java.awt.Font("Dubai Light", 1, 18)); // NOI18N
-        btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/guardar.png"))); // NOI18N
         btnCrear.setText("Registrar");
         btnCrear.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -120,7 +119,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
                 btnCrearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 469, 110, -1));
+        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 470, 140, 40));
 
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 113, 193));
@@ -198,7 +197,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 12, -1));
 
         jspEdadMaxima.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jspEdadMaxima.setModel(new javax.swing.SpinnerNumberModel(12, 12, null, 1));
+        jspEdadMaxima.setModel(new javax.swing.SpinnerNumberModel(80, 12, null, 1));
         jspEdadMaxima.setBorder(null);
         jspEdadMaxima.setMinimumSize(new java.awt.Dimension(50, 22));
         jPanel1.add(jspEdadMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 316, 61, 20));
@@ -314,15 +313,14 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
 
         btnAgregarPreguntas.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregarPreguntas.setFont(new java.awt.Font("Dubai Light", 1, 18)); // NOI18N
-        btnAgregarPreguntas.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarPreguntas.setText("Agregar Preguntas");
+        btnAgregarPreguntas.setText("Agregar Preguntas a esta Encuesta");
         btnAgregarPreguntas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAgregarPreguntas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarPreguntasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 470, 220, 40));
+        jPanel1.add(btnAgregarPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 470, 330, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 82, 1170, 540));
 
