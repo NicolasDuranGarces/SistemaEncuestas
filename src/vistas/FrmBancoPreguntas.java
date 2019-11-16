@@ -46,14 +46,20 @@ public class FrmBancoPreguntas extends JInternalFrame {
     }
     
     public FrmBancoPreguntas(int id){
+        
         initComponents();
+        jLabel1.setVisible(false);
+        jLabel2.setVisible(false);
+        cmbCategoria.setVisible(false);
+        cmbSubcategoria.setVisible(false);
+        idSubcategoria = id;
         controlador = new CtlBancoPreguntas();
         setVisible(true);
         setMaximizable(false);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         
         try {
-            controlador.cargarPreguntas();
+            controlador.cargarPreguntas(idSubcategoria);
             tblListado.setModel(controlador.listarPreguntas());
             cargarCategorias();
         } catch (ConexionException ex) {
@@ -110,7 +116,7 @@ public class FrmBancoPreguntas extends JInternalFrame {
         });
         jScrollPane1.setViewportView(tblListado);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 161, 620, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 111, 620, 290));
 
         cmbCategoria.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -119,23 +125,23 @@ public class FrmBancoPreguntas extends JInternalFrame {
                 cmbCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 140, 30));
+        getContentPane().add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 140, 30));
 
         jLabel1.setBackground(new java.awt.Color(0, 113, 193));
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 113, 193));
         jLabel1.setText("CATEGORIA :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 122, 100, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 69, 100, 30));
 
         cmbSubcategoria.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         cmbSubcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbSubcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 118, 140, 30));
+        getContentPane().add(cmbSubcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 140, 30));
 
         jLabel2.setBackground(new java.awt.Color(0, 113, 193));
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 113, 193));
         jLabel2.setText("SUBCATEGORIA :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 130, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 69, 130, 30));
 
         jPanel1.setBackground(new java.awt.Color(0, 113, 193));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));

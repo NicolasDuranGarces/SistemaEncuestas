@@ -290,19 +290,18 @@ public class DAOPregunta implements IDAOPregunta {
         }
     }
 
-    @Override
     public ArrayList<DTOPreguntaOpciones> ListadoPregunta() throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
                     = con.prepareStatement("SELECT p.idpregunta, p.enunciado, p.tipopregunta, c.idcategoria, c.nombre, sc.idsubcategoria, sc.nombre \n"
                             + "from preguntas p join subcategoria sc on p.idsubcategoria=sc.idsubcategoria join"
-                            + " categoria c on sc.idcategoria=c.idcategoria");
-
+                            + " categoria c on sc.idcategoria=c.idcategoria ");
+                                  
             ResultSet res = pstm.executeQuery();
 
             long idPregunta;
             String enunciado, nombreSubCategoria, nombreCategoria;
-            int tipoPregunta, idSubcategoria, idCategoria;
+            int tipoPregunta, idCategoria, idSubcategoria;
 
             DTOPreguntaOpciones pregunta = null;
             ArrayList<DTOPreguntaOpciones> lista = new ArrayList();
@@ -314,6 +313,47 @@ public class DAOPregunta implements IDAOPregunta {
                 idCategoria = res.getInt(4);
                 nombreCategoria = res.getString(5);
                 idSubcategoria = res.getInt(6);
+                nombreSubCategoria = res.getString(7);
+
+                pregunta = new DTOPreguntaOpciones(idPregunta, enunciado, tipoPregunta, idSubcategoria, nombreSubCategoria, idCategoria, nombreCategoria);
+                lista.add(pregunta);
+            }
+
+            return lista;
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
+    
+    @Override
+    public ArrayList<DTOPreguntaOpciones> ListadoPregunta(int idSubcategoria) throws ConexionException {
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT p.idpregunta, p.enunciado, p.tipopregunta, c.idcategoria, c.nombre, sc.idsubcategoria, sc.nombre \n"
+                            + "from preguntas p join subcategoria sc on p.idsubcategoria=sc.idsubcategoria join"
+                            + " categoria c on sc.idcategoria=c.idcategoria where p.idsubcategoria= ?");
+            
+            pstm.setInt(1, idSubcategoria);
+            
+            ResultSet res = pstm.executeQuery();
+
+            long idPregunta;
+            String enunciado, nombreSubCategoria, nombreCategoria;
+            int tipoPregunta, idCategoria;
+
+            DTOPreguntaOpciones pregunta = null;
+            ArrayList<DTOPreguntaOpciones> lista = new ArrayList();
+            while (res.next()) {
+
+                idPregunta = res.getInt(1);
+                enunciado = res.getString(2);
+                tipoPregunta = res.getInt(3);
+                idCategoria = res.getInt(4);
+                nombreCategoria = res.getString(5);
+//                idSubcategoria = res.getInt(6);
                 nombreSubCategoria = res.getString(7);
 
                 pregunta = new DTOPreguntaOpciones(idPregunta, enunciado, tipoPregunta, idSubcategoria, nombreSubCategoria, idCategoria, nombreCategoria);

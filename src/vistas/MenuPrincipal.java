@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    private JInternalFrame ventanaActual;
+    public static JInternalFrame ventanaActual;
 
     public MenuPrincipal() {
         initComponents();
@@ -71,13 +71,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelInterno1.setMinimumSize(new java.awt.Dimension(1380, 712));
 
         jMenuEncuestas.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuEncuestas.setForeground(new java.awt.Color(0, 0, 0));
         jMenuEncuestas.setText("Encuestas");
         jMenuEncuestas.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
 
         jmiCrearEncuesta.setBackground(new java.awt.Color(255, 255, 255));
         jmiCrearEncuesta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiCrearEncuesta.setForeground(new java.awt.Color(0, 0, 0));
         jmiCrearEncuesta.setText("Crear Encuesta");
         jmiCrearEncuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +86,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiAgregarPreguntas.setBackground(new java.awt.Color(255, 255, 255));
         jmiAgregarPreguntas.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiAgregarPreguntas.setForeground(new java.awt.Color(0, 0, 0));
         jmiAgregarPreguntas.setText("Agregar Preguntas");
         jmiAgregarPreguntas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +96,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiInvitarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         jmiInvitarUsuarios.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiInvitarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         jmiInvitarUsuarios.setText("Invitar Usuarios");
         jmiInvitarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +106,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiPresentarEncuesta.setBackground(new java.awt.Color(255, 255, 255));
         jmiPresentarEncuesta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiPresentarEncuesta.setForeground(new java.awt.Color(0, 0, 0));
         jmiPresentarEncuesta.setText("Presentar Encuestas");
         jmiPresentarEncuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +117,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuEncuestas);
 
         jMenuPreguntas.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuPreguntas.setForeground(new java.awt.Color(0, 0, 0));
         jMenuPreguntas.setText("Preguntas");
         jMenuPreguntas.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
 
@@ -138,7 +132,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiDespachos.setBackground(new java.awt.Color(255, 255, 255));
         jmiDespachos.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiDespachos.setForeground(new java.awt.Color(0, 0, 0));
         jmiDespachos.setText("--");
         jmiDespachos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +142,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiHistorial.setBackground(new java.awt.Color(255, 255, 255));
         jmiHistorial.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiHistorial.setForeground(new java.awt.Color(0, 0, 0));
         jmiHistorial.setText("--");
         jmiHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +152,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiHabilitarVehiculos.setBackground(new java.awt.Color(255, 255, 255));
         jmiHabilitarVehiculos.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiHabilitarVehiculos.setForeground(new java.awt.Color(0, 0, 0));
         jmiHabilitarVehiculos.setText("--");
         jmiHabilitarVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,13 +163,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuPreguntas);
 
         jMenuUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         jMenuUsuarios.setText("Usuarios");
         jMenuUsuarios.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
 
         jmiRegistrarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         jmiRegistrarUsuarios.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiRegistrarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         jmiRegistrarUsuarios.setText("Registrar Usuario");
         jmiRegistrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +178,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiGestionarViajes.setBackground(new java.awt.Color(255, 255, 255));
         jmiGestionarViajes.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiGestionarViajes.setForeground(new java.awt.Color(0, 0, 0));
         jmiGestionarViajes.setText("--");
         jmiGestionarViajes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +188,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmiMisTiquetes.setBackground(new java.awt.Color(255, 255, 255));
         jmiMisTiquetes.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiMisTiquetes.setForeground(new java.awt.Color(0, 0, 0));
         jmiMisTiquetes.setText("--");
         jmiMisTiquetes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,6 +422,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiMisTiquetes;
     private javax.swing.JMenuItem jmiPresentarEncuesta;
     private javax.swing.JMenuItem jmiRegistrarUsuarios;
-    private vistas.PanelInterno panelInterno1;
+    public static vistas.PanelInterno panelInterno1;
     // End of variables declaration//GEN-END:variables
 }

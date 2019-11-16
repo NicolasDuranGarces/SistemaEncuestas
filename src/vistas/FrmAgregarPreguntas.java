@@ -22,8 +22,10 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
     private JInternalFrame subVentana;
     CtlAgregarPreguntas controlador;
-    public static int idEncuesta;
+    int idEncuesta;
+    int idSubCategoria;
     PreguntaEncuesta preguntaQuitar;
+    
 
     /**
      * Creates new form FrmAgregarPreguntas
@@ -38,6 +40,20 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
     }
 
+    public FrmAgregarPreguntas(int idEnc, int idSub) {
+        idEncuesta = idEnc;
+        idSubCategoria = idSub;
+        controlador = new CtlAgregarPreguntas();
+        initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        setVisible(true);
+        setMaximizable(false);
+        btnAgregarPreguntaNueva.setVisible(false);
+        txtIdEncuesta.setText(idEncuesta+"");
+        btnFijarEncuesta.doClick();
+        btnFijarEncuesta.setVisible(false);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -353,7 +369,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     private void btnAgregarPreguntaExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaExistenteActionPerformed
 
         if (subVentana == null) {
-            subVentana = new FrmBancoPreguntas();
+            subVentana = new FrmBancoPreguntas(idSubCategoria);
             panelInterno1.add(subVentana);
             Dimension desktopSize = panelInterno1.getSize();
             Dimension FrameSize = subVentana.getSize();
@@ -362,7 +378,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         } else {
             panelInterno1.remove(subVentana);
             panelInterno1.repaint();
-            subVentana = new FrmBancoPreguntas();
+            subVentana = new FrmBancoPreguntas(idSubCategoria);
             panelInterno1.add(subVentana);
             Dimension desktopSize = panelInterno1.getSize();
             Dimension FrameSize = subVentana.getSize();

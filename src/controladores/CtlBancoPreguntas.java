@@ -68,9 +68,13 @@ public class CtlBancoPreguntas {
         listaCategorias = boCategorias.cargarCategorias();
         return listaCategorias;
     }
-
+    
     public void cargarPreguntas() throws ConexionException {
         setListaPreguntas(boPregunta.ListadoPregunta());
+    }
+
+    public void cargarPreguntas(int idSubcategoria) throws ConexionException {
+        setListaPreguntas(boPregunta.ListadoPregunta(idSubcategoria));
     }
 
     public DefaultTableModel listarPreguntas() throws ConexionException {

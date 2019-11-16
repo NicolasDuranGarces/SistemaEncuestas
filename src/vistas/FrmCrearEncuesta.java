@@ -11,6 +11,7 @@ import excepciones.PreguntasInsuficientesException;
 import excepciones.YaExistenteException;
 import javax.swing.JOptionPane;
 import java.sql.Date;
+import javax.swing.JInternalFrame;
 import modelo.Encuesta;
 
 /**
@@ -21,6 +22,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
 
     int idSubcategoria;
     int idCategoria;
+    int idEncuesta;
     CtlCrearEncuesta controlador;
 
     /**
@@ -86,6 +88,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        btnAgregarPreguntas = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
@@ -211,7 +214,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icons/eliminar.png"))); // NOI18N
         jButton5.setText("Eliminar");
         jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 469, 110, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 110, -1));
 
         jLabel11.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 113, 193));
@@ -309,6 +312,18 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
         jSeparator6.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 400, 40, 10));
 
+        btnAgregarPreguntas.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregarPreguntas.setFont(new java.awt.Font("Dubai Light", 1, 18)); // NOI18N
+        btnAgregarPreguntas.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarPreguntas.setText("Agregar Preguntas");
+        btnAgregarPreguntas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarPreguntas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPreguntasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregarPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 470, 220, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 82, 1170, 540));
 
         jPanel2.setBackground(new java.awt.Color(0, 113, 193));
@@ -366,7 +381,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
             }
             idSubcategoria = controlador.getListaSubcategorias().get(cmbSubcategoria.getSelectedIndex()).getId();
             Encuesta encuesta = new Encuesta(id, nombre, descripcion, publica, fechaInicio, fechaFin, maximoEncuestados, objetivo, edadMinima, edadMaxima, generoObjetivo, idSubcategoria);
-            controlador.crear(encuesta, idSubcategoria, isAleatoria, cantidadPreguntas);
+            idEncuesta = controlador.crear(encuesta, idSubcategoria, isAleatoria, cantidadPreguntas);
             limpiar();
             JOptionPane.showMessageDialog(this, "Encuesta creada satisfactoriamente");
 
@@ -408,6 +423,18 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_cmbCategoriaActionPerformed
+
+    private void btnAgregarPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntasActionPerformed
+        JInternalFrame agregarPreguntas = new FrmAgregarPreguntas(idEncuesta, idSubcategoria);
+//        this.dispose();
+//        agregarPreguntas.setVisible(true);
+        
+        
+        MenuPrincipal.panelInterno1.remove(MenuPrincipal.ventanaActual);
+        MenuPrincipal.panelInterno1.repaint();
+        MenuPrincipal.ventanaActual = agregarPreguntas;
+        MenuPrincipal.panelInterno1.add(MenuPrincipal.ventanaActual);
+    }//GEN-LAST:event_btnAgregarPreguntasActionPerformed
 
     public void cargarCategorias() {
         try{
@@ -481,6 +508,7 @@ public class FrmCrearEncuesta extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Genero;
     private javax.swing.ButtonGroup btgTipoEncuesta;
+    private javax.swing.JButton btnAgregarPreguntas;
     private javax.swing.JButton btnCrear;
     private javax.swing.JCheckBox chkAutomatica;
     private javax.swing.JComboBox<String> cmbCategoria;

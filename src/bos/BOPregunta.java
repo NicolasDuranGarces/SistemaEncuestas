@@ -76,6 +76,10 @@ public class BOPregunta {
         return dAOPregunta.ListadoPregunta();
     }
     
+    public ArrayList<DTOPreguntaOpciones> ListadoPregunta(int idSubcategoria) throws ConexionException {
+        return dAOPregunta.ListadoPregunta(idSubcategoria);
+    }
+    
     public ArrayList<Pregunta> ListarTodasLasPreguntas() throws ConexionException {
         return dAOPregunta.cargarTodasLasPreguntas();
     }

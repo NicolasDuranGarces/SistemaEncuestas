@@ -28,6 +28,8 @@ public interface IDAOPregunta {
 
     public ArrayList<DTOPreguntaOpciones> ListadoPregunta() throws ConexionException;
     
+    public ArrayList<DTOPreguntaOpciones> ListadoPregunta(int idSubcategoria) throws ConexionException;
+    
     public ArrayList<Pregunta> cargarTodasLasPreguntas() throws ConexionException;
 
     public ArrayList<Pregunta> cargarPreguntasPorCategoria(int idCategoria) throws ConexionException;
