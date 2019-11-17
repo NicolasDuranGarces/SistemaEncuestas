@@ -46,7 +46,9 @@ import org.json.simple.JSONObject;
  * @author jose
  */
 public class CtlAgregarPreguntas {
-
+    
+    CtlCrearEncuesta controlEncuesta;
+    CtlCrearPreguntas controlPreguntas;
     BOPreguntasEncuesta boPreguntasEncuesta;
     BOEncuesta boEncuesta;
     BOOpciones boOpciones;
