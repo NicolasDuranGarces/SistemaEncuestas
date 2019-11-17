@@ -1,0 +1,272 @@
+{ 
+    "_id" : ObjectId("5db650c8601b4e23cb8d2bf9"), 
+    "idEncuesta" : 10.0, 
+    "nombre" : "Encuesta de Ejemplo", 
+    "descripcion" : "Encuesta de conocimiento de los tipos de base de datos", 
+    "isPublic" : "1", 
+    "inicio" : ISODate("2019-11-27T05:00:00.000+0000"), 
+    "fin" : ISODate("2019-12-27T05:00:00.000+0000"), 
+    "maximoEncuestados" : 10.0, 
+    "objetivo" : "Comprobar el correcto modelado de la BD", 
+    "edadMinima" : 18.0, 
+    "edadMaxima" : 60.0, 
+    "generoObjetivo" : "T", 
+    "idSubcategoria" : "10", 
+    "preguntasEncuesta" : [
+        {
+            "numeroPregunta" : 1.0, 
+            "idPreguntaRequisito" : 0.0, 
+            "idOpcionRequisito" : 0.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 1.0, 
+                    "enunciado" : "¿Usted ha trabajado bases de datos?", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 1.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Sí", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "No", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 2.0, 
+            "idPreguntaRequisito" : 1.0, 
+            "idOpcionRequisito" : 1.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 2.0, 
+                    "enunciado" : "Ordene de mayor a menor la importancia que tienen los siguientes administradores de bases de datos:", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 4.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Oracle", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "MySQL", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "PostGress", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 4.0, 
+                            "opcion" : "SQL Server", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 3.0, 
+            "idPreguntaRequisito" : 1.0, 
+            "idOpcionRequisito" : 1.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 3.0, 
+                    "enunciado" : "¿Cuáles de los siguientes tipos de bases de datos conoce? (puede seleccionar varios)", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 3.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Relacional", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "Orientada a objetos", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "Clave-Valor", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 4.0, 
+                            "opcion" : "Documental", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 5.0, 
+                            "opcion" : "Otra:", 
+                            "opcionAbierta" : 1.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 4.0, 
+            "idPreguntaRequisito" : 0.0, 
+            "idOpcionRequisito" : 0.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 4.0, 
+                    "enunciado" : "¿Qué tan importante le parece el saber manejar bases de datos?", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 6.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Muy importante", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "Importante", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "Poco importante", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 4.0, 
+                            "opcion" : "Sin importancia", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 5.0, 
+            "idPreguntaRequisito" : 0.0, 
+            "idOpcionRequisito" : 0.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 5.0, 
+                    "enunciado" : "¿Qué tan probable sería para usted estudiar Modelado de bases de datos?", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 6.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "Me es indiferente", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "No me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 6.0, 
+            "idPreguntaRequisito" : 0.0, 
+            "idOpcionRequisito" : 0.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 6.0, 
+                    "enunciado" : "¿Qué tan probable sería para usted estudiar Consultas avanzadas en bases de datos?", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 6.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "Me es indiferente", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "No me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 7.0, 
+            "idPreguntaRequisito" : 0.0, 
+            "idOpcionRequisito" : 0.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 7.0, 
+                    "enunciado" : "¿Qué tan probable sería para usted estudiar Visualización de datos?", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 6.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "Me es indiferente", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "No me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "numeroPregunta" : 8.0, 
+            "idPreguntaRequisito" : 0.0, 
+            "idOpcionRequisito" : 0.0, 
+            "pregunta" : [
+                {
+                    "idPregunta" : 8.0, 
+                    "enunciado" : "¿Qué tan probable sería para usted estudiar Bases de datos no relacionales?", 
+                    "idSubcategoria" : 10.0, 
+                    "tipoPregunta" : 6.0, 
+                    "opciones" : [
+                        {
+                            "idOpcion" : 1.0, 
+                            "opcion" : "Me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 2.0, 
+                            "opcion" : "Me es indiferente", 
+                            "opcionAbierta" : 0.0
+                        }, 
+                        {
+                            "idOpcion" : 3.0, 
+                            "opcion" : "No me gustaría", 
+                            "opcionAbierta" : 0.0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
