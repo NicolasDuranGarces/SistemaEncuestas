@@ -8,18 +8,10 @@ package vistas;
 import controladores.CtlAgregarPreguntas;
 import dtos.DTOPreguntaOpciones;
 import excepciones.ConexionException;
-import excepciones.DniUnicoExcepcion;
 import excepciones.PreguntaYaEnLaEncuestaException;
-import excepciones.PreguntasInsuficientesException;
-import excepciones.YaExistenteException;
 import java.awt.Dimension;
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.PreguntaEncuesta;
 
 
@@ -39,7 +31,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
      * Creates new form FrmAgregarPreguntas
      */
     public FrmAgregarPreguntas() {
-        controlador = new CtlAgregarPreguntas();
+        
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setVisible(true);
@@ -221,34 +213,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnImportarPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarPreguntasActionPerformed
-        //Creamos el objeto JFileChooser
-        JFileChooser fc = new JFileChooser();
-        //Indicamos lo que podemos seleccionar
-        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        //Creamos el filtro
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.JSON", "json");
-        //Le indicamos el filtro
-        fc.setFileFilter(filtro);
-        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
-        int seleccion = fc.showOpenDialog(btnImportarPreguntas);
-        //Si el usuario, pincha en aceptar
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //Seleccionamos el fichero
-            File fichero = fc.getSelectedFile();
-            try {
-                if (controlador.importarPreguntas(fichero.getAbsolutePath())) {
-                    JOptionPane.showMessageDialog(null, "Importacion Exitosa");
-                }
-            } catch (ConexionException ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (YaExistenteException ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (PreguntasInsuficientesException ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DniUnicoExcepcion ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        
     }//GEN-LAST:event_btnImportarPreguntasActionPerformed
 
     private void btnAgregarPreguntaExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaExistenteActionPerformed
