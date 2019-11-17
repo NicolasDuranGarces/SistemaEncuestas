@@ -44,11 +44,11 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     ArrayList<JLabel> label = new ArrayList();
     ArrayList<JPanel> panel = new ArrayList();
     JLabel lblDescrpcionPregunta = new JLabel();
-    JTextField txtOpcionPreguntsMixtaOtro = new JTextField();
+    JTextField txtOpcionPreguntaMixtaOtro;
     //Listas Particulares
     ArrayList<Pregunta> listaPreguntas = new ArrayList();
     ArrayList<Pregunta> listadoPreguntaEncuesta = new ArrayList();
-    ArrayList<Opcion> listaRespuestas = new ArrayList();
+    ArrayList<Opcion> listaOpciones = new ArrayList();
 
     //Controladores
     CtlPresentarEncuesta controlador;
@@ -67,7 +67,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
             cantidadTotalDePreguntas = listadoPreguntaEncuesta.size();
             listaPreguntas = controlador.listarTodasLasPreguntas();
-            listaRespuestas = controlador.listarOpciones();
+            listaOpciones = controlador.listarOpciones();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -227,12 +227,12 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void cargarRespuestaEleccionUnica(Long preguntaId) {
         int posicion = 1;
         ButtonGroup grupo = new ButtonGroup();
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            if (listaRespuestas.get(i).getIdPregunta() == preguntaId) {
+        for (int i = 0; i < listaOpciones.size(); i++) {
+            if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
                 JRadioButton radio = new JRadioButton();
                 grupo.add(radio);
-                radio.setText(listaRespuestas.get(i).getTextoOpcion());
-                radio.setName(listaRespuestas.get(i).getIdOpcion() + "");
+                radio.setText(listaOpciones.get(i).getTextoOpcion());
+                radio.setName(listaOpciones.get(i).getIdOpcion() + "");
                 radio.setBounds(30, 30 + (posicion * 30), 60, 50);
                 contenedor.add(radio);
                 radioButtons.add(radio);
@@ -245,12 +245,12 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void cargarRespuestaNominal(Long preguntaId) {
         int posicion = 1;
         ButtonGroup grupo = new ButtonGroup();
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            if (listaRespuestas.get(i).getIdPregunta() == preguntaId) {
+        for (int i = 0; i < listaOpciones.size(); i++) {
+            if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
                 JRadioButton radio = new JRadioButton();
                 grupo.add(radio);
-                radio.setText(listaRespuestas.get(i).getTextoOpcion());
-                radio.setName(listaRespuestas.get(i).getIdOpcion() + "");
+                radio.setText(listaOpciones.get(i).getTextoOpcion());
+                radio.setName(listaOpciones.get(i).getIdOpcion() + "");
                 radio.setBounds(30, 30 + (posicion * 30), 60, 50);
                 contenedor.add(radio);
                 radioButtons.add(radio);
@@ -263,12 +263,12 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void cargarRespuestaNumerica(Long preguntaId) {
         int posicion = 1;
         ButtonGroup grupo = new ButtonGroup();
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            if (listaRespuestas.get(i).getIdPregunta() == preguntaId) {
+        for (int i = 0; i < listaOpciones.size(); i++) {
+            if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
                 JRadioButton radio = new JRadioButton();
                 grupo.add(radio);
-                radio.setText(listaRespuestas.get(i).getTextoOpcion());
-                radio.setName(listaRespuestas.get(i).getIdOpcion() + "");
+                radio.setText(listaOpciones.get(i).getTextoOpcion());
+                radio.setName(listaOpciones.get(i).getIdOpcion() + "");
                 radio.setBounds(30, 30 + (posicion * 30), 60, 50);
                 contenedor.add(radio);
                 radioButtons.add(radio);
@@ -280,11 +280,11 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
     public void cargarRespuestaEleccionMultiple(Long preguntaId) {
         int posicion = 1;
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            if (listaRespuestas.get(i).getIdPregunta() == preguntaId) {
+        for (int i = 0; i < listaOpciones.size(); i++) {
+            if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
                 JCheckBox checkBox = new JCheckBox();
-                checkBox.setText(listaRespuestas.get(i).getTextoOpcion());
-                checkBox.setName(listaRespuestas.get(i).getIdOpcion() + "");
+                checkBox.setText(listaOpciones.get(i).getTextoOpcion());
+                checkBox.setName(listaOpciones.get(i).getIdOpcion() + "");
                 checkBox.setBounds(30, 30 + (posicion * 30), 60, 50);
 //                contenedor.add(checkBox);
 //                checboxG.add(checkBox);
@@ -299,14 +299,14 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
     public void cargarRespuestaRanking(Long preguntaId) {
 
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            if (listaRespuestas.get(i).getIdPregunta() == preguntaId) {
+        for (int i = 0; i < listaOpciones.size(); i++) {
+            if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
                 JTextField tex = new JTextField();
                 JLabel label = new JLabel();
                 JPanel panel = new JPanel();
-                tex.setName(listaRespuestas.get(i).getIdOpcion() + "");
-                label.setText(listaRespuestas.get(i).getTextoOpcion());
-                label.setName(listaRespuestas.get(i).getIdOpcion() + "");
+                tex.setName(listaOpciones.get(i).getIdOpcion() + "");
+                label.setText(listaOpciones.get(i).getTextoOpcion());
+                label.setName(listaOpciones.get(i).getIdOpcion() + "");
                 label.setPreferredSize(new Dimension(1000, 50));
                 panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
                 panel.add(tex);
@@ -324,23 +324,49 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void cargarRespuestaMixta(Long preguntaId) {
         int posicion = 1;
 //        JCheckBox checkBox = new JCheckBox();
+        ButtonGroup grupo = new ButtonGroup();
+        for (int i = 0; i < listaOpciones.size(); i++) {
+            if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
+                JRadioButton radioAbierta = new JRadioButton();
+                if (listaOpciones.get(i).isAbierta()) {
 
-        for (int i = 0; i < listaRespuestas.size(); i++) {
-            if (listaRespuestas.get(i).getIdPregunta() == preguntaId) {
-                if (listaRespuestas.get(i).isAbierta()) {
-                    JCheckBox checkBox = new JCheckBox();
-                    checkBox.setText(listaRespuestas.get(i).getTextoOpcion());
-                    checkBox.setName(listaRespuestas.get(i).getIdOpcion() + "");
-                    contenedor.add(checkBox);
-                    checboxG.add(checkBox);
+                    grupo.add(radioAbierta);
+                    radioAbierta.setText(listaOpciones.get(i).getTextoOpcion());
+                    radioAbierta.setName(listaOpciones.get(i).getIdOpcion() + "");
+//                    radioAbierta.setActionCommand("Nuevo");
+                    txtOpcionPreguntaMixtaOtro = new JTextField();
+                    txtOpcionPreguntaMixtaOtro.setSize(150, 23);
+                    txtOpcionPreguntaMixtaOtro.setBounds(30, 30 + (posicion * 30), 60, 50);
+                    txtOpcionPreguntaMixtaOtro.setEnabled(false);
+                    radioAbierta.addActionListener((ActionEvent ae) -> {
+                        if (radioAbierta.isSelected()) {
+                            txtOpcionPreguntaMixtaOtro.setEnabled(true);
+                        }
+                    });
+
+//                    radioAbierta.addActionListener(addFocusListener(fl));
+                    contenedor.add(radioAbierta);
+                    radioButtons.add(radioAbierta);
+
+                    contenedor.add(txtOpcionPreguntaMixtaOtro);
+
                 } else {
-                    JCheckBox checkBox = new JCheckBox();
-                    checkBox.setText(listaRespuestas.get(i).getTextoOpcion());
-                    checkBox.setName(listaRespuestas.get(i).getIdOpcion() + "");
-                    checkBox.setBounds(30, 30 + (posicion * 30), 60, 50);
-                    checboxG.add(checkBox);
-                    contenedor.add(checkBox);
-                    checkBox.addActionListener(this);
+                    JRadioButton radio = new JRadioButton();
+                    grupo.add(radio);
+                    radio.setText(listaOpciones.get(i).getTextoOpcion());
+                    radio.setName(listaOpciones.get(i).getIdOpcion() + "");
+                    radio.setBounds(30, 30 + (posicion * 30), 60, 50);
+                    radio.addActionListener((ae) -> {
+                        if (!radioAbierta.isSelected()) {
+
+                            txtOpcionPreguntaMixtaOtro.setText("");
+                            txtOpcionPreguntaMixtaOtro.setEnabled(false);
+                        }
+
+                    });
+                    radioButtons.add(radio);
+                    contenedor.add(radio);
+                    radio.addActionListener(this);
                 }
             }
             posicion += 1;
@@ -351,6 +377,10 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void limpiarPanelRespuestaUnica() {
         for (int i = 0; i < radioButtons.size(); i++) {
             contenedor.remove(radioButtons.get(i));
+        }
+        if (txtOpcionPreguntaMixtaOtro != null) {
+            contenedor.remove(txtOpcionPreguntaMixtaOtro);
+            txtOpcionPreguntaMixtaOtro = null;
         }
         contenedor.repaint();
         radioButtons.clear();
@@ -368,7 +398,10 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
         for (int i = 0; i < checboxG.size(); i++) {
             contenedor.remove(checboxG.get(i));
         }
-
+        if (txtOpcionPreguntaMixtaOtro != null) {
+            contenedor.remove(txtOpcionPreguntaMixtaOtro);
+            txtOpcionPreguntaMixtaOtro = null;
+        }
         contenedor.repaint();
         checboxG.clear();
     }
@@ -396,19 +429,34 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
         RespuestaUsuario respuesta;
 
         int numeroPregunta = contadorPregunta;
-        long idPregunta = listadoPreguntaEncuesta.get(numeroPregunta-1).getIdPregunta();
-        System.out.println(numeroPregunta+","+idPregunta);
+        long idPregunta = listadoPreguntaEncuesta.get(numeroPregunta - 1).getIdPregunta();
+        System.out.println(numeroPregunta + "," + idPregunta);
         String respuestaAbierta = null;
         int ordenRanking = 0;
 
         for (int i = 0; i < radioButtons.size(); i++) {
             if (radioButtons.get(i).isSelected()) {
-                try {
-                    respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni,
-                            idPregunta, i + 1, respuestaAbierta, ordenRanking);
-                    controlador.guardarRespuestaUnica(respuesta);
-                } catch (ConexionException ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                if (txtOpcionPreguntaMixtaOtro == null) {
+                    try {
+                        respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni,
+                                idPregunta, i + 1, respuestaAbierta, ordenRanking);
+                        controlador.guardarRespuestaUnica(respuesta);
+                    } catch (ConexionException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage());
+                    }
+                } else {
+                    respuestaAbierta = txtOpcionPreguntaMixtaOtro.getText();
+                    if (respuestaAbierta.equals("")) {
+                        JOptionPane.showMessageDialog(this, "Debe ingresar su nueva respuesta");
+                    } else {
+                        try {
+                            respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni,
+                                    idPregunta, i + 1, respuestaAbierta, ordenRanking);
+                            controlador.guardarRespuestaUnica(respuesta);
+                        } catch (ConexionException ex) {
+                            JOptionPane.showMessageDialog(this, ex.getMessage());
+                        }
+                    }
                 }
             }
         }
@@ -418,7 +466,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
         RespuestaUsuario respuesta;
         ArrayList<RespuestaUsuario> listaRespuestas = new ArrayList<>();
         int numeroPregunta = contadorPregunta;
-        long idPregunta = listadoPreguntaEncuesta.get(numeroPregunta-1).getIdPregunta();
+        long idPregunta = listadoPreguntaEncuesta.get(numeroPregunta - 1).getIdPregunta();
         String respuestaAbierta = null;
         int ordenRanking = 0;
 
@@ -442,4 +490,10 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void actionPerformed(ActionEvent ae) {
 
     }
+
+//    private void radioAbiertaActionPerformed(java.awt.event.ActionEvent evt) {
+//        if(ae.getActionCommand().equals("Nuevo")){
+//            
+//        }
+//    }
 }
