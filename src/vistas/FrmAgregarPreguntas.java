@@ -8,11 +8,20 @@ package vistas;
 import controladores.CtlAgregarPreguntas;
 import dtos.DTOPreguntaOpciones;
 import excepciones.ConexionException;
+import excepciones.DniUnicoExcepcion;
 import excepciones.PreguntaYaEnLaEncuestaException;
+import excepciones.PreguntasInsuficientesException;
+import excepciones.YaExistenteException;
 import java.awt.Dimension;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.PreguntaEncuesta;
+
 
 /**
  *
@@ -25,7 +34,6 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     int idEncuesta;
     int idSubCategoria;
     PreguntaEncuesta preguntaQuitar;
-    
 
     /**
      * Creates new form FrmAgregarPreguntas
@@ -36,7 +44,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setVisible(true);
         setMaximizable(false);
-        btnAgregarPreguntaNueva.setVisible(false);
+        // btnImportarPreguntas.setVisible(false);
 
     }
 
@@ -48,12 +56,13 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setVisible(true);
         setMaximizable(false);
-        btnAgregarPreguntaNueva.setVisible(false);
-        txtIdEncuesta.setText(idEncuesta+"");
+        //btnImportarPreguntas.setVisible(false);
+        txtIdEncuesta.setText(idEncuesta + "");
         btnFijarEncuesta.doClick();
         btnFijarEncuesta.setVisible(false);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +75,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPreguntas = new javax.swing.JTable();
-        btnAgregarPreguntaNueva = new javax.swing.JButton();
+        btnImportarPreguntas = new javax.swing.JButton();
         txtIdEncuesta = new javax.swing.JTextField();
         btnAgregarPreguntaExistente = new javax.swing.JButton();
         btnFijarEncuesta = new javax.swing.JButton();
@@ -114,17 +123,17 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 550, 440));
 
-        btnAgregarPreguntaNueva.setBackground(new java.awt.Color(0, 51, 102));
-        btnAgregarPreguntaNueva.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        btnAgregarPreguntaNueva.setText("Añadir Una Nueva Pregunta");
-        btnAgregarPreguntaNueva.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAgregarPreguntaNueva.setBorderPainted(false);
-        btnAgregarPreguntaNueva.addActionListener(new java.awt.event.ActionListener() {
+        btnImportarPreguntas.setBackground(new java.awt.Color(0, 51, 102));
+        btnImportarPreguntas.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        btnImportarPreguntas.setText("Importar Encuesta");
+        btnImportarPreguntas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnImportarPreguntas.setBorderPainted(false);
+        btnImportarPreguntas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPreguntaNuevaActionPerformed(evt);
+                btnImportarPreguntasActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarPreguntaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 210, 30));
+        jPanel2.add(btnImportarPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 210, 30));
 
         txtIdEncuesta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtIdEncuesta.setMinimumSize(new java.awt.Dimension(4, 19));
@@ -211,160 +220,36 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarPreguntaNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaNuevaActionPerformed
-        // TODO add your handling code here:
-        Object[] tipoPreguntas = {"Seleccion", "Elección única Dicotómicas", "Elección única Politómicas", "Elección múltiple", "Ranking", "Escala Numerica", "Escala Nominal", "Preguntas Mixtas"};
-        String opcion = (String) JOptionPane.showInputDialog(null, "Selecciona un Tipo de Pregunta", "Elegir", JOptionPane.QUESTION_MESSAGE, null, tipoPreguntas, tipoPreguntas[0]);
-
-        switch (opcion) {
-            case "Elección única Dicotómicas":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
+    private void btnImportarPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarPreguntasActionPerformed
+        //Creamos el objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+        //Indicamos lo que podemos seleccionar
+        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        //Creamos el filtro
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.JSON", "json");
+        //Le indicamos el filtro
+        fc.setFileFilter(filtro);
+        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(btnImportarPreguntas);
+        //Si el usuario, pincha en aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //Seleccionamos el fichero
+            File fichero = fc.getSelectedFile();
+            try {
+                if (controlador.importarPreguntas(fichero.getAbsolutePath())) {
+                    JOptionPane.showMessageDialog(null, "Importacion Exitosa");
                 }
-                break;
-            case "Elección única Politómicas":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Elección múltiple":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionMultiple();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionMultiple();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Ranking":
-
-                if (subVentana == null) {
-                    subVentana = new FrmRanking();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmRanking();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Escala Numerica":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Escala Nominal":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Preguntas Mixtas":
-
-                if (subVentana == null) {
-                    subVentana = new FrmPreguntaMixta();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmPreguntaMixta();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Seleccion":
-                JOptionPane.showMessageDialog(null, "Ingrese una Opcion valida");
-                break;
-
+            } catch (ConexionException ex) {
+                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (YaExistenteException ex) {
+                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (PreguntasInsuficientesException ex) {
+                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DniUnicoExcepcion ex) {
+                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
-    }//GEN-LAST:event_btnAgregarPreguntaNuevaActionPerformed
+    }//GEN-LAST:event_btnImportarPreguntasActionPerformed
 
     private void btnAgregarPreguntaExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaExistenteActionPerformed
 
@@ -390,7 +275,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         try {
             DTOPreguntaOpciones preguntaAgregar = FrmBancoPreguntas.pregunta;
-            
+
             controlador.agregarAEncuesta(preguntaAgregar, idEncuesta);
             listar();
         } catch (ConexionException | PreguntaYaEnLaEncuestaException ex) {
@@ -400,7 +285,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         try {
-            
+
             controlador.quitarDeEncuesta(idEncuesta, preguntaQuitar.getNumeroPregunta());
             listar();
         } catch (ConexionException ex) {
@@ -447,16 +332,24 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAgregarPreguntas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -475,8 +368,8 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregarPreguntaExistente;
-    private javax.swing.JButton btnAgregarPreguntaNueva;
     private javax.swing.JButton btnFijarEncuesta;
+    private javax.swing.JButton btnImportarPreguntas;
     private javax.swing.JButton btnQuitar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

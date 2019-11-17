@@ -240,18 +240,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAgregarPreguntasActionPerformed
 
     private void jmiInvitarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInvitarUsuariosActionPerformed
-        try {
-            if (ventanaActual == null) {
-                ventanaActual = new FrmInvitarUsuarios();
-                panelInterno1.add(ventanaActual);
-            } else {
-                panelInterno1.remove(ventanaActual);
-                panelInterno1.repaint();
-                ventanaActual = new FrmInvitarUsuarios();
-                panelInterno1.add(ventanaActual);
-            }
-        } catch (ConexionException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        if (ventanaActual == null) {
+            ventanaActual = new FrmInvitarUsuarios();
+            panelInterno1.add(ventanaActual);
+        } else {
+            panelInterno1.remove(ventanaActual);
+            panelInterno1.repaint();
+            ventanaActual = new FrmInvitarUsuarios();
+            panelInterno1.add(ventanaActual);
         }
     }//GEN-LAST:event_jmiInvitarUsuariosActionPerformed
 
