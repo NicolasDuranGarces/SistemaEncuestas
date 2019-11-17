@@ -5,17 +5,8 @@
  */
 package controladores;
 
-import bos.BOEncuesta;
 import bos.BOOpciones;
-import bos.BOPreguntasEncuesta;
-import dtos.DTOPreguntaOpciones;
-import excepciones.ConexionException;
 import excepciones.NoExistenteException;
-import excepciones.PreguntaYaEnLaEncuestaException;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import modelo.PreguntaEncuesta;
 import bos.BOEncuesta;
 import bos.BOPreguntasEncuesta;
 import dtos.DTOPreguntaOpciones;
@@ -28,13 +19,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Encuesta;
 import modelo.Opcion;
-import modelo.Pregunta;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 import modelo.PreguntaEncuesta;
@@ -209,10 +198,7 @@ public class CtlAgregarPreguntas {
 
                 //aqui mando el crear PreguntaEncuesta
             }
-
-        } catch (IOException ex) {
-            Logger.getLogger(CtlAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        } catch (IOException | ParseException ex) {
             Logger.getLogger(CtlAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
