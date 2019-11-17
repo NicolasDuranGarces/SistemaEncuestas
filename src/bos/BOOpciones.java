@@ -61,4 +61,12 @@ public class BOOpciones {
     public ArrayList<Opcion> litaOpciones() throws ConexionException{
         return dAOOpciones.listaOpciones();
     }
+    
+    public boolean verificarOpcion(long idPregunta, int idOpcionRequisito) throws ConexionException, NoExistenteException {
+        if (dAOOpciones.buscar(idPregunta, idOpcionRequisito) == null ) {
+            System.out.println(idPregunta+ ", "+idOpcionRequisito);
+            throw new NoExistenteException("La opción", "referenciar");
+        }
+        return true;
+    }
 }

@@ -27,7 +27,7 @@ public class DAOPreguntaEncuesta implements IDAOPreguntaEncuesta {
 
             PreparedStatement pstm
                     = con.prepareStatement("insert into preguntas_encuesta (idencuesta, idpregunta, numeropregunta,"
-                            + " idpreguntarequisito, idopcionrequisito) values ?, ?, ?, ?, ?)");
+                            + " idpreguntarequisito, idopcionrequisito) values (?, ?, ?, ?, ?)");
             pstm.setInt(1, pregunta.getIdEncuesta());
             pstm.setLong(2, pregunta.getIdPregunta());
             pstm.setInt(3, pregunta.getNumeroPregunta());

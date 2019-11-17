@@ -75,7 +75,7 @@ public class DAOOpciones implements IDAOOpciones {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
                     = con.prepareStatement("SELECT idpregunta, idopcion, opcion, "
-                            + "opcionabierta from opciones WHERE idpregunta = ? , and idopcion = ?");
+                            + "opcionabierta from opciones WHERE idpregunta = ?  and idopcion = ?");
             pstm.setLong(1, idPregunta);
             pstm.setInt(2, idOpcion);
 

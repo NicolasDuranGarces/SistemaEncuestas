@@ -5,20 +5,10 @@
  */
 package vistas;
 
-import controladores.CtlAgregarPreguntas;
 import excepciones.ConexionException;
 import java.awt.Dimension;
-import java.io.File;
-import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import excepciones.DniUnicoExcepcion;
-import excepciones.PreguntaYaEnLaEncuestaException;
-import excepciones.PreguntasInsuficientesException;
-import excepciones.YaExistenteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,11 +17,10 @@ import java.util.logging.Logger;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     public static JInternalFrame ventanaActual;
-    CtlAgregarPreguntas controlador;
+
     public MenuPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        controlador = new CtlAgregarPreguntas();
 
         if (FrmLogin.role.equals("Usuario")) {
 //            jMenuAdministrar.setVisible(false);
@@ -62,7 +51,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiAgregarPreguntas = new javax.swing.JMenuItem();
         jmiInvitarUsuarios = new javax.swing.JMenuItem();
         jmiPresentarEncuesta = new javax.swing.JMenuItem();
-        jmiImportarEncuesta = new javax.swing.JMenuItem();
         jMenuPreguntas = new javax.swing.JMenu();
         jmiCrearPreguntas = new javax.swing.JMenuItem();
         jmiDespachos = new javax.swing.JMenuItem();
@@ -125,16 +113,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuEncuestas.add(jmiPresentarEncuesta);
-
-        jmiImportarEncuesta.setBackground(new java.awt.Color(255, 255, 255));
-        jmiImportarEncuesta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jmiImportarEncuesta.setText("Importar Encuesta");
-        jmiImportarEncuesta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiImportarEncuestaActionPerformed(evt);
-            }
-        });
-        jMenuEncuestas.add(jmiImportarEncuesta);
 
         jMenuBar1.add(jMenuEncuestas);
 
@@ -262,15 +240,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAgregarPreguntasActionPerformed
 
     private void jmiInvitarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInvitarUsuariosActionPerformed
-        if (ventanaActual == null) {
-            ventanaActual = new FrmInvitarUsuarios();
-            panelInterno1.add(ventanaActual);
-        } else {
-            panelInterno1.remove(ventanaActual);
-            panelInterno1.repaint();
-            ventanaActual = new FrmInvitarUsuarios();
-            panelInterno1.add(ventanaActual);
-        }
+//        try {
+            if (ventanaActual == null) {
+                ventanaActual = new FrmInvitarUsuarios();
+                panelInterno1.add(ventanaActual);
+            } else {
+                panelInterno1.remove(ventanaActual);
+                panelInterno1.repaint();
+                ventanaActual = new FrmInvitarUsuarios();
+                panelInterno1.add(ventanaActual);
+            }
+//        } catch (ConexionException ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
     }//GEN-LAST:event_jmiInvitarUsuariosActionPerformed
 
     private void jmiRegistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarUsuariosActionPerformed
@@ -382,38 +364,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiPresentarEncuestaActionPerformed
 
-    private void jmiImportarEncuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImportarEncuestaActionPerformed
-        // TODO add your handling code here:
-        //Creamos el objeto JFileChooser
-        JFileChooser fc = new JFileChooser();
-        //Indicamos lo que podemos seleccionar
-        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        //Creamos el filtro
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.JSON", "json");
-        //Le indicamos el filtro
-        fc.setFileFilter(filtro);
-        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
-        int seleccion = fc.showOpenDialog(jmiImportarEncuesta);
-        //Si el usuario, pincha en aceptar
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //Seleccionamos el fichero
-            File fichero = fc.getSelectedFile();
-            try {
-                if (controlador.importarPreguntas(fichero.getAbsolutePath())) {
-                    JOptionPane.showMessageDialog(null, "Importacion Exitosa");
-                }
-            } catch (ConexionException ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (YaExistenteException ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (PreguntasInsuficientesException ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DniUnicoExcepcion ex) {
-                Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jmiImportarEncuestaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -468,7 +418,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiGestionarViajes;
     private javax.swing.JMenuItem jmiHabilitarVehiculos;
     private javax.swing.JMenuItem jmiHistorial;
-    private javax.swing.JMenuItem jmiImportarEncuesta;
     private javax.swing.JMenuItem jmiInvitarUsuarios;
     private javax.swing.JMenuItem jmiMisTiquetes;
     private javax.swing.JMenuItem jmiPresentarEncuesta;

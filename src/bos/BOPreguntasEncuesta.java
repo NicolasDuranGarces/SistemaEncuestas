@@ -8,6 +8,7 @@ package bos;
 import definiciones.IDAOPregunta;
 import definiciones.IDAOPreguntaEncuesta;
 import excepciones.ConexionException;
+import excepciones.NoExistenteException;
 import excepciones.PreguntaYaEnLaEncuestaException;
 import excepciones.PreguntasInsuficientesException;
 import fabrica.FabricaDAO;
@@ -29,15 +30,26 @@ public class BOPreguntasEncuesta {
         daoPreguntasEncuesta = FabricaDAO.getFabrica().crearDAOPreguntaEncuesta();
         daoPreguntas = FabricaDAO.getFabrica().crearDAOPregunta();
     }
-
-    public boolean agregarPreguntaALaEncuesta(PreguntaEncuesta preguntaEncuesta) throws ConexionException, PreguntaYaEnLaEncuestaException {
-        PreguntaEncuesta preguntaGuardada = daoPreguntasEncuesta.buscar(preguntaEncuesta.getIdEncuesta(), preguntaEncuesta.getNumeroPregunta());
+    
+    public boolean verificarSiPreguntaNoAgregada(PreguntaEncuesta preguntaEncuesta) throws ConexionException, PreguntaYaEnLaEncuestaException{
         ArrayList<PreguntaEncuesta> lista = cargarPreguntasEncuesta(preguntaEncuesta.getIdEncuesta());
         for (int i=0; i<lista.size(); i++){
             if (lista.get(i).getIdPregunta() == preguntaEncuesta.getIdPregunta()){
                 throw new PreguntaYaEnLaEncuestaException();
             }
         }
+        return true;
+    }
+
+    public boolean agregarPreguntaALaEncuesta(PreguntaEncuesta preguntaEncuesta) throws ConexionException, PreguntaYaEnLaEncuestaException {
+        PreguntaEncuesta preguntaGuardada = daoPreguntasEncuesta.buscar(preguntaEncuesta.getIdEncuesta(), preguntaEncuesta.getNumeroPregunta());
+//        ArrayList<PreguntaEncuesta> lista = cargarPreguntasEncuesta(preguntaEncuesta.getIdEncuesta());
+//        for (int i=0; i<lista.size(); i++){
+//            if (lista.get(i).getIdPregunta() == preguntaEncuesta.getIdPregunta()){
+//                throw new PreguntaYaEnLaEncuestaException();
+//            }
+//        }
+        verificarSiPreguntaNoAgregada(preguntaEncuesta);
         
         if (preguntaGuardada == null) {
             if (preguntaEncuesta.getIdPreguntaRequisito() == 0) {
@@ -92,5 +104,12 @@ public class BOPreguntasEncuesta {
         } else {
             throw new PreguntasInsuficientesException(cantidadPreguntasEncuesta, listado.size());
         }
+    }
+    
+    public boolean verificarPregunta(int idEncuesta, int numeroPregunta) throws ConexionException, PreguntaYaEnLaEncuestaException, NoExistenteException {
+        if (daoPreguntasEncuesta.buscar(idEncuesta, numeroPregunta) == null) {
+            throw new NoExistenteException("La pregunta", "referenciar");
+        } 
+        return true;
     }
 }
