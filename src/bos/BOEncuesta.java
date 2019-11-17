@@ -63,6 +63,14 @@ public class BOEncuesta {
         return daoEncuesta.cargarEncuestas();
     }
     
+    public ArrayList<Encuesta> cargarEncuestasPublicas() throws ConexionException {        
+        return daoEncuesta.cargarEncuestasPublicas();
+    }
+    
+    public ArrayList<Encuesta> cargarEncuestasPrivadas(long dni) throws ConexionException {        
+        return daoEncuesta.cargarEncuestasPrivadas(dni);
+    }
+    
     public boolean verificarEncuesta(int idEncuesta) throws ConexionException, NoExistenteException {
         if (daoEncuesta.buscar(idEncuesta) == null){
             throw new NoExistenteException("La encuesta", "fijar");

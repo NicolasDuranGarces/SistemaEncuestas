@@ -33,7 +33,7 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
         controlador = new CtlElegirEncuesta();
         cargarCategorias();
         try {
-            controlador.cargarEncuestas();
+            controlador.cargarEncuestasPublicas();
             tblEncuestas.setModel(controlador.listarEncuestas());
         } catch (ConexionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -62,9 +62,7 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cmbCategoria.setBackground(new java.awt.Color(255, 255, 255));
         cmbCategoria.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbCategoria.setForeground(new java.awt.Color(0, 0, 0));
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,9 +70,7 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
             }
         });
 
-        cmbSubcategoria.setBackground(new java.awt.Color(255, 255, 255));
         cmbSubcategoria.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbSubcategoria.setForeground(new java.awt.Color(0, 0, 0));
         cmbSubcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbSubcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,9 +86,7 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
         jLabel12.setForeground(new java.awt.Color(0, 113, 193));
         jLabel12.setText("SubCategoria");
 
-        cmbVisibilidad.setBackground(new java.awt.Color(255, 255, 255));
         cmbVisibilidad.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        cmbVisibilidad.setForeground(new java.awt.Color(0, 0, 0));
         cmbVisibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Públicos", "Privados" }));
         cmbVisibilidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +98,7 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
         jLabel13.setForeground(new java.awt.Color(0, 113, 193));
         jLabel13.setText("Visibilidad");
 
-        tblEncuestas.setForeground(new java.awt.Color(0, 0, 0));
+        tblEncuestas.setAutoCreateRowSorter(true);
         tblEncuestas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -119,7 +113,6 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
         tblEncuestas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         tblEncuestas.setGridColor(new java.awt.Color(0, 0, 0));
         tblEncuestas.setSelectionBackground(new java.awt.Color(0, 113, 193));
-        tblEncuestas.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tblEncuestas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblEncuestasMouseClicked(evt);
@@ -213,6 +206,21 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
 
     private void cmbVisibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVisibilidadActionPerformed
 
+        String tipo = cmbVisibilidad.getSelectedItem().toString();
+        try {
+            
+            if (tipo.equals("Privados")) {
+                
+                controlador.cargarEncuestasPrivadas(FrmLogin.userID);
+                tblEncuestas.setModel(controlador.listarEncuestas());
+            } else {
+                controlador.cargarEncuestasPublicas();
+                
+                tblEncuestas.setModel(controlador.listarEncuestas());
+            }
+        } catch (ConexionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_cmbVisibilidadActionPerformed
 
     private void tblEncuestasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEncuestasMouseClicked
@@ -226,11 +234,11 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblEncuestasMouseClicked
 
     private void btnPresentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentarActionPerformed
-        
+
         FrmPresentarEncuesta presentarEncuesta = new FrmPresentarEncuesta(FrmLogin.userID, encuesta.getId());
         presentarEncuesta.setVisible(true);
         this.setVisible(false);
-       
+
     }//GEN-LAST:event_btnPresentarActionPerformed
 
     public void cargarCategorias() {

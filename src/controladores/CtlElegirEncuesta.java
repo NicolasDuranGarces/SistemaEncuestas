@@ -77,6 +77,14 @@ public class CtlElegirEncuesta {
         setListaEncuestas(boEncuesta.cargarEncuestas());
     }
     
+    public void cargarEncuestasPublicas() throws ConexionException{
+        setListaEncuestas(boEncuesta.cargarEncuestasPublicas());
+    }
+    
+    public void cargarEncuestasPrivadas(long dni) throws ConexionException{
+        setListaEncuestas(boEncuesta.cargarEncuestasPrivadas(dni));
+    }
+    
     public DefaultTableModel listarEncuestas() throws ConexionException {
 
         String[] nombreColumnas = {"ID Encuesta", "Nombre Encuesta", "Descripción", "Visibilidad"};

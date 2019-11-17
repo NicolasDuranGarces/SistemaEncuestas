@@ -165,6 +165,7 @@ public class DAOEncuesta implements IDAOEncuesta {
         }
     }
     
+    @Override
     public ArrayList<Encuesta> cargarEncuestas() throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
@@ -234,6 +235,122 @@ public class DAOEncuesta implements IDAOEncuesta {
         } catch (SQLException ex) {
 //            System.out.println("Error en la conexión");
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
+    
+    
+    @Override
+    public ArrayList<Encuesta> cargarEncuestasPublicas() throws ConexionException {
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT idEncuesta, nombre, "
+                            + "descripcion, ispublic, fechainicio, fechafin, maximoencuestados, "
+                            + "objetivo, edadminima, edadmaxima, generoobjetivo, "
+                            + "idsubcategoria from encuestas where ispublic = 1 ");
+            
+
+            ResultSet res = pstm.executeQuery();
+            
+            int idEncuesta;
+            String nombre;
+            String descripcion;
+            boolean publica;
+            Date fechaInicio;
+            Date fechaFin;
+            int maximoEncuestados;
+            String objetivo;
+            int edadMinima;
+            int edadMaxima;
+            String generoObjetivo;
+            int idSubcategoria;
+
+            Encuesta encuesta = null;
+            ArrayList<Encuesta> lista = new ArrayList<>();
+
+            while (res.next()) {
+
+                idEncuesta = res.getInt(1);
+                nombre = res.getString(2);
+                descripcion = res.getString(3);
+                publica = res.getBoolean(4);
+                fechaInicio = res.getDate(5);
+                fechaFin = res.getDate(6);
+                maximoEncuestados = res.getInt(7);
+                objetivo = res.getString(8);
+                edadMinima = res.getInt(9);
+                edadMaxima = res.getInt(10);
+                generoObjetivo = res.getString(11);
+                idSubcategoria = res.getInt(12);
+
+                encuesta = new Encuesta(idEncuesta, nombre, descripcion, publica, fechaInicio, fechaFin,
+                        maximoEncuestados, objetivo, edadMinima, edadMaxima, generoObjetivo, idSubcategoria);
+                lista.add(encuesta);
+            }
+
+            return lista;
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
+    
+    @Override
+    public ArrayList<Encuesta> cargarEncuestasPrivadas(long dni) throws ConexionException {
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT e.idEncuesta, e.nombre, "
+                            + "e.descripcion, e.ispublic, e.fechainicio, e.fechafin, e.maximoencuestados, "
+                            + "e.objetivo, e.edadminima, e.edadmaxima, e.generoobjetivo, "
+                            + "e.idsubcategoria from encuestas e join participantes p "
+                            + "on e.idencuesta=p.idencuesta where e.ispublic = 0 and p.dni = ? ");
+            pstm.setLong(1, dni);
+
+            ResultSet res = pstm.executeQuery();
+            
+            int idEncuesta;
+            String nombre;
+            String descripcion;
+            boolean publica;
+            Date fechaInicio;
+            Date fechaFin;
+            int maximoEncuestados;
+            String objetivo;
+            int edadMinima;
+            int edadMaxima;
+            String generoObjetivo;
+            int idSubcategoria;
+
+            Encuesta encuesta = null;
+            ArrayList<Encuesta> lista = new ArrayList<>();
+
+            while (res.next()) {
+
+                idEncuesta = res.getInt(1);
+                nombre = res.getString(2);
+                descripcion = res.getString(3);
+                publica = res.getBoolean(4);
+                fechaInicio = res.getDate(5);
+                fechaFin = res.getDate(6);
+                maximoEncuestados = res.getInt(7);
+                objetivo = res.getString(8);
+                edadMinima = res.getInt(9);
+                edadMaxima = res.getInt(10);
+                generoObjetivo = res.getString(11);
+                idSubcategoria = res.getInt(12);
+
+                encuesta = new Encuesta(idEncuesta, nombre, descripcion, publica, fechaInicio, fechaFin,
+                        maximoEncuestados, objetivo, edadMinima, edadMaxima, generoObjetivo, idSubcategoria);
+                lista.add(encuesta);
+            }
+
+            return lista;
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
             ex.printStackTrace();
             throw new ConexionException();
         }

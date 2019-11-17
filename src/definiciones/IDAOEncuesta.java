@@ -23,5 +23,9 @@ public interface IDAOEncuesta {
     
     public ArrayList<Encuesta> cargarEncuestas() throws ConexionException;
     
+    public ArrayList<Encuesta> cargarEncuestasPublicas() throws ConexionException;
+    
+    public ArrayList<Encuesta> cargarEncuestasPrivadas(long dni) throws ConexionException;
+    
     public boolean eliminar(int idEncuesta) throws ConexionException;
 }
