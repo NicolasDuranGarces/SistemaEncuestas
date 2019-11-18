@@ -188,7 +188,7 @@ public class CtlAgregarPreguntas {
 
                     JSONArray opcionesArray = (JSONArray) pregunta.get("opciones");
                     ArrayList<Opcion> listaOpciones = new ArrayList<>();
-                    for (int k = 0; k <= opcionesArray.size(); k++) {
+                    for (int k = 0; k < opcionesArray.size(); k++) {
 
                         JSONObject opciones = (JSONObject) opcionesArray.get(k);
 
