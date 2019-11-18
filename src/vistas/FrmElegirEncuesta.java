@@ -38,6 +38,10 @@ public class FrmElegirEncuesta extends javax.swing.JInternalFrame {
         } catch (ConexionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        cmbCategoria.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel12.setVisible(false);
+        cmbSubcategoria.setVisible(false);
     }
 
     /**
