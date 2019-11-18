@@ -3,11 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/bos/BORespuestasUsuario.java</file>
-            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/vistas/FrmInvitarUsuarios.java</file>
+<<<<<<< HEAD
+            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/vistas/FrmAgregarPreguntas.java</file>
             <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/vistas/FrmPresentarEncuesta.java</file>
-            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/controladores/CtlAgregarPreguntas.java</file>
-            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/controladores/CtlPresentarEncuesta.java</file>
+=======
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmBancoPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmCrearPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmCrearEncuesta.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmAgregarPreguntaButtom.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmInvitarUsuarios.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmRegistrate.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmAgregarPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/Reportes.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/controladores/CtlAgregarPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmLogin.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmPresentarEncuesta.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/conexion/FabricaConexion.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/MenuPrincipal.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/PanelInterno.java</file>
+>>>>>>> acd0e7640835d904db85d976521737d940ce8cf9
         </group>
     </open-files>
 </project-private>

@@ -42,6 +42,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jmiInvitarUsuarios.setVisible(false);
             jMenuPreguntas.setVisible(false);
             jMenuUsuarios.setVisible(false);
+            jmiImportacionEncuestas.setVisible(false);
         } else if (FrmLogin.role.equals("Administrador")) {
             jmiPresentarEncuesta.setVisible(false);
 
