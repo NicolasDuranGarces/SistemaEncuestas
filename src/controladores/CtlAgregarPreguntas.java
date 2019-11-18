@@ -191,14 +191,12 @@ public class CtlAgregarPreguntas {
 
                     JSONObject pregunta = (JSONObject) preguntaArray.get(j);
 
-//                    idPregunta = (long) Double.parseDouble(pregunta.get("idPregunta").toString());
-                    idPregunta = boPregunta.generarId();
+                    idPregunta = (long) Double.parseDouble(pregunta.get("idPregunta").toString());
+//                    idPregunta = boPregunta.generarId();
                     enunciado = pregunta.get("enunciado").toString();
                     tipoPregunta = (int) Double.parseDouble(pregunta.get("tipoPregunta").toString());
 
-                    controlPreguntas.crear(tipoPregunta, idSubcategoria, enunciado, isPublic);
-                    System.out.println("Registrar PREGUNTA\n" + tipoPregunta + "," + idSubcategoria + "," + enunciado + "," + isPublic);
-
+                    
                     JSONArray opcionesArray = (JSONArray) pregunta.get("opciones");
                     ArrayList<Opcion> listaOpciones = new ArrayList<>();
                     for (int k = 0; k < opcionesArray.size(); k++) {
@@ -216,6 +214,29 @@ public class CtlAgregarPreguntas {
                         System.out.println(listaOpciones.get(k).getTextoOpcion());
                     }
                     controlPreguntas.setOpciones(listaOpciones);
+                    
+                    
+                    
+                    controlPreguntas.crear(tipoPregunta, idSubcategoria, enunciado, isPublic);
+                    System.out.println("Registrar PREGUNTA\n" + tipoPregunta + "," + idSubcategoria + "," + enunciado + "," + isPublic);
+
+//                    JSONArray opcionesArray = (JSONArray) pregunta.get("opciones");
+//                    ArrayList<Opcion> listaOpciones = new ArrayList<>();
+//                    for (int k = 0; k < opcionesArray.size(); k++) {
+//
+//                        JSONObject opciones = (JSONObject) opcionesArray.get(k);
+//
+//                        int idOpcion = (int) Double.parseDouble(opciones.get("idOpcion").toString());
+//                        String textoOpcion = opciones.get("opcion").toString();
+//                        boolean isAbierta = false;
+//                        if (Double.parseDouble(opciones.get("idOpcion").toString()) != 0) {
+//                            isAbierta = true;
+//                        }
+//                        Opcion op = new Opcion(idPregunta, idOpcion, textoOpcion, isAbierta);
+//                        listaOpciones.add(op);
+//                        System.out.println(listaOpciones.get(k).getTextoOpcion());
+//                    }
+//                    controlPreguntas.setOpciones(listaOpciones);
                 }
                 PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta(idEncuesta, idPregunta, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
                 agregarAEncuestaImport(preguntaEncuesta, idEncuesta);
