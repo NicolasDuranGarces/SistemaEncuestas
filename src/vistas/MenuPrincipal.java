@@ -75,6 +75,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiRegistrarUsuarios = new javax.swing.JMenuItem();
         jmiGestionarViajes = new javax.swing.JMenuItem();
         jmiMisTiquetes = new javax.swing.JMenuItem();
+        jMenuEncuestas1 = new javax.swing.JMenu();
+        jmiCrearEncuesta1 = new javax.swing.JMenuItem();
+        jmiAgregarPreguntas1 = new javax.swing.JMenuItem();
+        jmiInvitarUsuarios1 = new javax.swing.JMenuItem();
+        jmiPresentarEncuesta1 = new javax.swing.JMenuItem();
+        jmiImportacionEncuestas1 = new javax.swing.JMenuItem();
+        jMenuEncuestas2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -222,6 +229,72 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuUsuarios.add(jmiMisTiquetes);
 
         jMenuBar1.add(jMenuUsuarios);
+
+        jMenuEncuestas1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuEncuestas1.setText("Reportes");
+        jMenuEncuestas1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+
+        jmiCrearEncuesta1.setBackground(new java.awt.Color(255, 255, 255));
+        jmiCrearEncuesta1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jmiCrearEncuesta1.setText("Crear Encuesta");
+        jmiCrearEncuesta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCrearEncuesta1ActionPerformed(evt);
+            }
+        });
+        jMenuEncuestas1.add(jmiCrearEncuesta1);
+
+        jmiAgregarPreguntas1.setBackground(new java.awt.Color(255, 255, 255));
+        jmiAgregarPreguntas1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jmiAgregarPreguntas1.setText("Agregar Preguntas");
+        jmiAgregarPreguntas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarPreguntas1ActionPerformed(evt);
+            }
+        });
+        jMenuEncuestas1.add(jmiAgregarPreguntas1);
+
+        jmiInvitarUsuarios1.setBackground(new java.awt.Color(255, 255, 255));
+        jmiInvitarUsuarios1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jmiInvitarUsuarios1.setText("Invitar Usuarios");
+        jmiInvitarUsuarios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiInvitarUsuarios1ActionPerformed(evt);
+            }
+        });
+        jMenuEncuestas1.add(jmiInvitarUsuarios1);
+
+        jmiPresentarEncuesta1.setBackground(new java.awt.Color(255, 255, 255));
+        jmiPresentarEncuesta1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jmiPresentarEncuesta1.setText("Presentar Encuestas");
+        jmiPresentarEncuesta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiPresentarEncuesta1ActionPerformed(evt);
+            }
+        });
+        jMenuEncuestas1.add(jmiPresentarEncuesta1);
+
+        jmiImportacionEncuestas1.setBackground(new java.awt.Color(255, 255, 255));
+        jmiImportacionEncuestas1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jmiImportacionEncuestas1.setText("Importar Encuesta");
+        jmiImportacionEncuestas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiImportacionEncuestas1ActionPerformed(evt);
+            }
+        });
+        jMenuEncuestas1.add(jmiImportacionEncuestas1);
+
+        jMenuBar1.add(jMenuEncuestas1);
+
+        jMenuEncuestas2.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuEncuestas2.setText("Cerrar Sesion");
+        jMenuEncuestas2.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jMenuEncuestas2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuEncuestas2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenuEncuestas2);
 
         setJMenuBar(jMenuBar1);
 
@@ -376,6 +449,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiImportacionEncuestasActionPerformed
 
+    private void jmiCrearEncuesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCrearEncuesta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiCrearEncuesta1ActionPerformed
+
+    private void jmiAgregarPreguntas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarPreguntas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiAgregarPreguntas1ActionPerformed
+
+    private void jmiInvitarUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInvitarUsuarios1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiInvitarUsuarios1ActionPerformed
+
+    private void jmiPresentarEncuesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPresentarEncuesta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiPresentarEncuesta1ActionPerformed
+
+    private void jmiImportacionEncuestas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiImportacionEncuestas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiImportacionEncuestas1ActionPerformed
+
+    private void jMenuEncuestas2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuEncuestas2MouseClicked
+        // TODO add your handling code here:
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuEncuestas2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -421,19 +521,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuEncuestas;
+    private javax.swing.JMenu jMenuEncuestas1;
+    private javax.swing.JMenu jMenuEncuestas2;
     private javax.swing.JMenu jMenuPreguntas;
     private javax.swing.JMenu jMenuUsuarios;
     private javax.swing.JMenuItem jmiAgregarPreguntas;
+    private javax.swing.JMenuItem jmiAgregarPreguntas1;
     private javax.swing.JMenuItem jmiCrearEncuesta;
+    private javax.swing.JMenuItem jmiCrearEncuesta1;
     private javax.swing.JMenuItem jmiCrearPreguntas;
     private javax.swing.JMenuItem jmiDespachos;
     private javax.swing.JMenuItem jmiGestionarViajes;
     private javax.swing.JMenuItem jmiHabilitarVehiculos;
     private javax.swing.JMenuItem jmiHistorial;
     private javax.swing.JMenuItem jmiImportacionEncuestas;
+    private javax.swing.JMenuItem jmiImportacionEncuestas1;
     private javax.swing.JMenuItem jmiInvitarUsuarios;
+    private javax.swing.JMenuItem jmiInvitarUsuarios1;
     private javax.swing.JMenuItem jmiMisTiquetes;
     private javax.swing.JMenuItem jmiPresentarEncuesta;
+    private javax.swing.JMenuItem jmiPresentarEncuesta1;
     private javax.swing.JMenuItem jmiRegistrarUsuarios;
     public static vistas.PanelInterno panelInterno1;
     // End of variables declaration//GEN-END:variables
