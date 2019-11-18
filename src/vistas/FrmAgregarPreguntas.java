@@ -37,8 +37,8 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         setVisible(true);
         setMaximizable(false);
         btnAgregarPreguntaExistente.setEnabled(false);
-       // btnAgregarPreguntaNueva.setVisible(false);
-
+        btnAgregarPreguntaNueva.setEnabled(false);
+        btnRefrescar.setEnabled(false);
     }
 
     public FrmAgregarPreguntas(int idEnc, int idSub) {
@@ -50,6 +50,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         setVisible(true);
         setMaximizable(false);
         //btnAgregarPreguntaNueva.setVisible(false);
+        btnAgregarPreguntaExistente.setEnabled(true);
         txtIdEncuesta.setText(idEncuesta + "");
         btnFijarEncuesta.doClick();
         btnFijarEncuesta.setVisible(false);
@@ -86,6 +87,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         btnAgregarDependiente = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        btnRefrescar = new javax.swing.JButton();
 
         setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -148,7 +150,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
                 btnAgregarPreguntaExistenteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarPreguntaExistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 250, 30));
+        jPanel2.add(btnAgregarPreguntaExistente, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 110, 250, 30));
 
         btnFijarEncuesta.setBackground(new java.awt.Color(0, 0, 153));
         btnFijarEncuesta.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -260,6 +262,18 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         jLabel8.setText("Agregar pregunta");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 130, -1));
 
+        btnRefrescar.setBackground(new java.awt.Color(0, 51, 102));
+        btnRefrescar.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        btnRefrescar.setText("Refrescar");
+        btnRefrescar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRefrescar.setBorderPainted(false);
+        btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefrescarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 110, 90, 30));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1365, 690));
 
         pack();
@@ -273,7 +287,6 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarPreguntaNuevaActionPerformed
 
     private void btnAgregarPreguntaExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaExistenteActionPerformed
-
         if (subVentana == null) {
             try {
                 idSubCategoria = controlador.obtenerSubcategoria(idEncuesta);
@@ -283,6 +296,9 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
                 Dimension FrameSize = subVentana.getSize();
                 subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
                 subVentana.show();
+                btnAgregarPreguntaNueva.setEnabled(true);
+                btnRefrescar.setEnabled(true);
+                btnAgregarPreguntaExistente.setEnabled(true);
             } catch (ConexionException | NoExistenteException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
@@ -295,6 +311,9 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
             Dimension FrameSize = subVentana.getSize();
             subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
             subVentana.show();
+            btnAgregarPreguntaNueva.setEnabled(true);
+            btnRefrescar.setEnabled(true);
+            btnAgregarPreguntaExistente.setEnabled(true);
         }
     }//GEN-LAST:event_btnAgregarPreguntaExistenteActionPerformed
 
@@ -378,6 +397,38 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnAgregarDependienteActionPerformed
 
+    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
+        // TODO add your handling code here:
+        if (subVentana == null) {
+            try {
+                idSubCategoria = controlador.obtenerSubcategoria(idEncuesta);
+                subVentana = new FrmBancoPreguntas(idSubCategoria);
+                panelInterno1.add(subVentana);
+                Dimension desktopSize = panelInterno1.getSize();
+                Dimension FrameSize = subVentana.getSize();
+                subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+                subVentana.show();
+                btnAgregarPreguntaNueva.setEnabled(true);
+                btnRefrescar.setEnabled(true);
+                btnAgregarPreguntaExistente.setEnabled(true);
+            } catch (ConexionException | NoExistenteException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        } else {
+            panelInterno1.remove(subVentana);
+            panelInterno1.repaint();
+            subVentana = new FrmBancoPreguntas(idSubCategoria);
+            panelInterno1.add(subVentana);
+            Dimension desktopSize = panelInterno1.getSize();
+            Dimension FrameSize = subVentana.getSize();
+            subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+            subVentana.show();
+            btnAgregarPreguntaNueva.setEnabled(true);
+            btnRefrescar.setEnabled(true);
+            btnAgregarPreguntaExistente.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnRefrescarActionPerformed
+
     public void listar() throws ConexionException, NoExistenteException {
         if (controlador.verificarEncuesta(idEncuesta)) {
             controlador.cargarPreguntasEncuesta(idEncuesta);
@@ -431,6 +482,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregarPreguntaNueva;
     private javax.swing.JButton btnFijarEncuesta;
     private javax.swing.JButton btnQuitar;
+    private javax.swing.JButton btnRefrescar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
