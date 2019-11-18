@@ -122,8 +122,8 @@ public class DAOPreguntaEncuesta implements IDAOPreguntaEncuesta {
     public PreguntaEncuesta buscar(int idEncuesta, int numeroPregunta) throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
-                    = con.prepareStatement("SELECT idencuesta, idpregunta, numeropregunta, idpreguntarequisito, "
-                            + "idopcionrequisito from preguntas_encuesta where idencuesta = ? and numeropregunta = ? ");
+                    = con.prepareStatement("SELECT idencuesta, idpregunta, numeropregunta, nvl(idpreguntarequisito,0), "
+                            + "nvl(idopcionrequisito,0) from preguntas_encuesta where idencuesta = ? and numeropregunta = ? ");
             pstm.setInt(1, idEncuesta);
             pstm.setInt(2, numeroPregunta);
 

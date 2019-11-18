@@ -77,6 +77,20 @@ public class CtlPresentarEncuesta {
     public boolean verificarSiContestada(int idEncuesta, int numeroPregunta, long dni) throws ConexionException{
         return boRespuestas.verificarSiContestada(idEncuesta, numeroPregunta, dni);
     }
+    
+    public boolean verificarSiMostrar(int idEncuesta, int numeroPregunta, long dni) throws ConexionException{
+        PreguntaEncuesta preguntaEncuesta = boPreguntaEncuesta.obtenerPreguntaEncuesta(idEncuesta, numeroPregunta);
+        if (preguntaEncuesta.getIdPreguntaRequisito()==0 && preguntaEncuesta.getIdOpcionRequisito()==0) {
+            return true;
+        } else {
+            long idPreguntaRequisito = preguntaEncuesta.getIdPreguntaRequisito();
+            int idOpcionRequisito = preguntaEncuesta.getIdOpcionRequisito();
+            
+            return boRespuestas.buscar(idEncuesta,dni,idPreguntaRequisito,idOpcionRequisito);
+        }
+    }
+    
+    
 //    public ArrayList<RespuestaUsuario> traerMisRespuestas(){
 //        return boRespuestas.traerMisRespuestas();
 //    }

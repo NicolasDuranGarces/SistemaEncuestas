@@ -51,6 +51,11 @@ public class BORespuestasUsuario {
         return daoRespuestaUsuario.buscar(idEncuesta, numeroPregunta, dni);
     }
     
+    
+    public boolean buscar(int idEncuesta, long dni, long idPreguntaRequisito, int idOpcionRequisito) throws ConexionException{
+        return daoRespuestaUsuario.buscar(idEncuesta, dni, idPreguntaRequisito, idOpcionRequisito);
+    }
+    
 //    public ArrayList<RespuestaUsuario> traerMisRespuestas(){
 //        
 //    }

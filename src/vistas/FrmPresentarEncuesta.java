@@ -202,56 +202,69 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
     public void pintarPregunta() {
 
-        
-                
         if (contadorPregunta < cantidadTotalDePreguntas || contadorPregunta == 0) {
-            
+
             try {
-                if(!controlador.verificarSiContestada(idEncuesta, contadorPregunta+1, dni)){
-                    
-                    lblNumeroPregunta.setText("PREGUNTA No. " +(contadorPregunta+1));
-                    contenedor.add(lblNumeroPregunta);
-                    lblDescrpcionPregunta.setText(listadoPreguntaEncuesta.get(contadorPregunta).getEnunciado());
-                    lblDescrpcionPregunta.setName(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta() + "");
-                    contenedor.add(lblDescrpcionPregunta);
-                    
-                    switch (listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta()) {
-                        case 2:
-                            cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        case 3:
-                            cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        case 4:
-                            cargarRespuestaEleccionMultiple(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        case 5:
-                            cargarRespuestaRanking(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        case 7:
-                            cargarRespuestaNumerica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        case 8:
-                            cargarRespuestaNominal(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        case 9:
-                            cargarRespuestaMixta(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                            break;
-                        default:
-                            break;
+                if (!controlador.verificarSiContestada(idEncuesta, contadorPregunta + 1, dni)) {
+
+                    if (controlador.verificarSiMostrar(idEncuesta, contadorPregunta + 1, dni)) {
+
+                        lblNumeroPregunta.setText("PREGUNTA No. " + (contadorPregunta + 1));
+                        lblNumeroPregunta.setVisible(true);
+                        contenedor.add(lblNumeroPregunta);
+                        lblDescrpcionPregunta.setText(listadoPreguntaEncuesta.get(contadorPregunta).getEnunciado());
+                        lblDescrpcionPregunta.setName(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta() + "");
+                        lblDescrpcionPregunta.setVisible(true);
+                        contenedor.add(lblDescrpcionPregunta);
+
+                        switch (listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta()) {
+                            case 2:
+                                cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            case 3:
+                                cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            case 4:
+                                cargarRespuestaEleccionMultiple(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            case 5:
+                                cargarRespuestaRanking(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            case 7:
+                                cargarRespuestaNumerica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            case 8:
+                                cargarRespuestaNominal(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            case 9:
+                                cargarRespuestaMixta(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                                tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                                break;
+                            default:
+                                break;
+                        }
+                        contadorPregunta++;
+                    } else {
+                        contadorPregunta++;
+                        lblNumeroPregunta.setVisible(false);
+                        lblDescrpcionPregunta.setVisible(false);
+                        limpiarPanelRespuestaUnica();
+                        limpiarPanelRespuestaMultiple();
+                        limpiarPanelRespuestaMixta();
+                        limpiarPanelRespuestaRanking();
+                        limpiarPanelRespuestaEscala();
+                        pintarPregunta();
                     }
-                    contadorPregunta++;
-                    
+
                 } else {
                     contadorPregunta++;
-                    if ((contadorPregunta) == cantidadTotalDePreguntas){
+                    if ((contadorPregunta) == cantidadTotalDePreguntas) {
                         yaRespondida = true;
                     }
                     pintarPregunta();
@@ -260,9 +273,11 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
         }
-        
+
         if ((contadorPregunta) == cantidadTotalDePreguntas) {
-            if (yaRespondida){
+            
+            
+            if (yaRespondida) {
                 lblYaRespondida.setVisible(true);
             }
             btnTerminar.setVisible(true);
@@ -276,6 +291,9 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
         ButtonGroup grupo = new ButtonGroup();
         for (int i = 0; i < listaOpciones.size(); i++) {
             if (listaOpciones.get(i).getIdPregunta() == preguntaId) {
+
+                System.out.println("pos " + i + ", idPregunta " + preguntaId + ", texto " + listaOpciones.get(i).getTextoOpcion());
+
                 JRadioButton radio = new JRadioButton();
                 grupo.add(radio);
                 radio.setText(listaOpciones.get(i).getTextoOpcion());
@@ -429,6 +447,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
             contenedor.remove(txtOpcionPreguntaMixtaOtro);
             txtOpcionPreguntaMixtaOtro = null;
         }
+        
         contenedor.repaint();
         radioButtons.clear();
     }
@@ -484,7 +503,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
         for (int i = 0; i < radioButtons.size(); i++) {
             if (radioButtons.get(i).isSelected()) {
-                if (!radioButtons.get(radioButtons.size()-1).isSelected()) {
+                if (!(radioButtons.get(i).getText().equals("Otra:"))) {
                     try {
                         respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni,
                                 idPregunta, i + 1, respuestaAbierta, ordenRanking);
@@ -545,7 +564,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
         for (int i = 0; i < textFieldList.size(); i++) {
             if (textFieldList.get(i).getText().equals("")) {
-                
+
                 verificado = false;
             } else {
                 int ordenRanking = Integer.parseInt(textFieldList.get(i).getText());

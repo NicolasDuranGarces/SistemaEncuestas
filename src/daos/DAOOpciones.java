@@ -126,7 +126,7 @@ public class DAOOpciones implements IDAOOpciones {
     public ArrayList<Opcion> listaOpciones() throws ConexionException {
         try (Connection con = FabricaConexion.getConexion()) {
             PreparedStatement pstm
-                    = con.prepareStatement("SELECT idpregunta, idopcion, opcion, opcionabierta FROM opciones");
+                    = con.prepareStatement("SELECT idpregunta, idopcion, opcion, opcionabierta FROM opciones order by idPregunta, idOpcion");
 
             ResultSet res = pstm.executeQuery();
 

@@ -22,6 +22,8 @@ public interface IDAORespuestaUsuario {
     
     public boolean buscar(int idEncuesta, int numeroPregunta, long dni) throws ConexionException;
     
+    public boolean buscar(int idEncuesta, long dni, long idPreguntaRequisito, int idOpcionRequisito) throws ConexionException;
+    
     public boolean eliminar(int idEncuesta, int numeroPregunta, long dni) throws ConexionException;
     
 }

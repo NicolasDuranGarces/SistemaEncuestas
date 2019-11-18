@@ -148,6 +148,36 @@ public class DAORespuestaUsuario implements IDAORespuestaUsuario {
             throw new ConexionException();
         }
     }
+    
+    @Override
+    public boolean buscar(int idEncuesta, long dni, long idPreguntaRequisito, int idOpcionRequisito) throws ConexionException {
+
+        try (Connection con = FabricaConexion.getConexion()) {
+            PreparedStatement pstm
+                    = con.prepareStatement("SELECT idencuesta, numeropregunta, dni, idpregunta, "
+                            + "idopcion, respuestaabierta, ordenranking from respuestas_usuarios "
+                            + "where idencuesta = ? and dni = ? and idpregunta = ? and idopcion = ?");
+            pstm.setInt(1, idEncuesta);
+            pstm.setLong(2, dni);
+            pstm.setLong(3, idPreguntaRequisito);
+            pstm.setInt(4, idOpcionRequisito);
+
+            ResultSet res = pstm.executeQuery();
+           
+            if (res.next()) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error en la conexión");
+            ex.printStackTrace();
+            throw new ConexionException();
+        }
+    }
 
     @Override
     public boolean eliminar(int idEncuesta, int numeroPregunta, long dni) throws ConexionException {
