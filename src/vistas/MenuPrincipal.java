@@ -43,6 +43,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jMenuPreguntas.setVisible(false);
             jMenuUsuarios.setVisible(false);
             jmiImportacionEncuestas.setVisible(false);
+            jMenuReportes.setVisible(false);
         } else if (FrmLogin.role.equals("Administrador")) {
             jmiPresentarEncuesta.setVisible(false);
 
@@ -75,7 +76,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiRegistrarUsuarios = new javax.swing.JMenuItem();
         jmiGestionarViajes = new javax.swing.JMenuItem();
         jmiMisTiquetes = new javax.swing.JMenuItem();
-        jMenuEncuestas1 = new javax.swing.JMenu();
+        jMenuReportes = new javax.swing.JMenu();
         jmiCrearEncuesta1 = new javax.swing.JMenuItem();
         jmiAgregarPreguntas1 = new javax.swing.JMenuItem();
         jmiInvitarUsuarios1 = new javax.swing.JMenuItem();
@@ -230,9 +231,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuUsuarios);
 
-        jMenuEncuestas1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuEncuestas1.setText("Reportes");
-        jMenuEncuestas1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jMenuReportes.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuReportes.setText("Reportes");
+        jMenuReportes.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
 
         jmiCrearEncuesta1.setBackground(new java.awt.Color(255, 255, 255));
         jmiCrearEncuesta1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -242,7 +243,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmiCrearEncuesta1ActionPerformed(evt);
             }
         });
-        jMenuEncuestas1.add(jmiCrearEncuesta1);
+        jMenuReportes.add(jmiCrearEncuesta1);
 
         jmiAgregarPreguntas1.setBackground(new java.awt.Color(255, 255, 255));
         jmiAgregarPreguntas1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -252,7 +253,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmiAgregarPreguntas1ActionPerformed(evt);
             }
         });
-        jMenuEncuestas1.add(jmiAgregarPreguntas1);
+        jMenuReportes.add(jmiAgregarPreguntas1);
 
         jmiInvitarUsuarios1.setBackground(new java.awt.Color(255, 255, 255));
         jmiInvitarUsuarios1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -262,7 +263,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmiInvitarUsuarios1ActionPerformed(evt);
             }
         });
-        jMenuEncuestas1.add(jmiInvitarUsuarios1);
+        jMenuReportes.add(jmiInvitarUsuarios1);
 
         jmiPresentarEncuesta1.setBackground(new java.awt.Color(255, 255, 255));
         jmiPresentarEncuesta1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -272,7 +273,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmiPresentarEncuesta1ActionPerformed(evt);
             }
         });
-        jMenuEncuestas1.add(jmiPresentarEncuesta1);
+        jMenuReportes.add(jmiPresentarEncuesta1);
 
         jmiImportacionEncuestas1.setBackground(new java.awt.Color(255, 255, 255));
         jmiImportacionEncuestas1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -282,9 +283,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmiImportacionEncuestas1ActionPerformed(evt);
             }
         });
-        jMenuEncuestas1.add(jmiImportacionEncuestas1);
+        jMenuReportes.add(jmiImportacionEncuestas1);
 
-        jMenuBar1.add(jMenuEncuestas1);
+        jMenuBar1.add(jMenuReportes);
 
         jMenuEncuestas2.setBackground(new java.awt.Color(255, 255, 255));
         jMenuEncuestas2.setText("Cerrar Sesion");
@@ -521,9 +522,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuEncuestas;
-    private javax.swing.JMenu jMenuEncuestas1;
     private javax.swing.JMenu jMenuEncuestas2;
     private javax.swing.JMenu jMenuPreguntas;
+    private javax.swing.JMenu jMenuReportes;
     private javax.swing.JMenu jMenuUsuarios;
     private javax.swing.JMenuItem jmiAgregarPreguntas;
     private javax.swing.JMenuItem jmiAgregarPreguntas1;
