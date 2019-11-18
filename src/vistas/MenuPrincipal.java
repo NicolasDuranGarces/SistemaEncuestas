@@ -262,7 +262,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAgregarPreguntasActionPerformed
 
     private void jmiInvitarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInvitarUsuariosActionPerformed
-//        try {
+
             if (ventanaActual == null) {
                 ventanaActual = new FrmInvitarUsuarios();
                 panelInterno1.add(ventanaActual);
@@ -272,13 +272,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 ventanaActual = new FrmInvitarUsuarios();
                 panelInterno1.add(ventanaActual);
             }
-//        } catch (ConexionException ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
-//        }
+
     }//GEN-LAST:event_jmiInvitarUsuariosActionPerformed
 
     private void jmiRegistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarUsuariosActionPerformed
-//        try {
+
         if (ventanaActual == null) {
             ventanaActual = new FrmRegistrarUsuario();
             panelInterno1.add(ventanaActual);
@@ -288,45 +286,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
             ventanaActual = new FrmRegistrarUsuario();
             panelInterno1.add(ventanaActual);
         }
-//        } catch (ConexionException ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
-//        }
+
     }//GEN-LAST:event_jmiRegistrarUsuariosActionPerformed
 
     private void jmiGestionarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGestionarViajesActionPerformed
-//        if (ventanaActual == null){
-//            ventanaActual = new CrearViajes();
-//            panelInterno1.add(ventanaActual);
-//        }else{
-//            panelInterno1.remove(ventanaActual);
-//            panelInterno1.repaint();
-//            ventanaActual = new CrearViajes();
-//            panelInterno1.add(ventanaActual);
-//        }
+
     }//GEN-LAST:event_jmiGestionarViajesActionPerformed
 
     private void jmiDespachosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDespachosActionPerformed
-//        if (ventanaActual == null){
-//            ventanaActual = new Despachos();
-//            panelInterno1.add(ventanaActual);
-//        }else{
-//            panelInterno1.remove(ventanaActual);
-//            panelInterno1.repaint();
-//            ventanaActual = new Despachos();
-//            panelInterno1.add(ventanaActual);
-//        }
+
     }//GEN-LAST:event_jmiDespachosActionPerformed
 
     private void jmiHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHistorialActionPerformed
-//        if (ventanaActual == null){
-//            ventanaActual = new Historial();
-//            panelInterno1.add(ventanaActual);
-//        }else{
-//            panelInterno1.remove(ventanaActual);
-//            panelInterno1.repaint();
-//            ventanaActual = new Historial();
-//            panelInterno1.add(ventanaActual);
-//        }
+
     }//GEN-LAST:event_jmiHistorialActionPerformed
 
     private void jmiCrearPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCrearPreguntasActionPerformed
@@ -351,27 +323,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiCrearPreguntasActionPerformed
 
     private void jmiHabilitarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHabilitarVehiculosActionPerformed
-//        if (ventanaActual == null){
-//            ventanaActual = new HabilitarVehiculos();
-//            panelInterno1.add(ventanaActual);
-//        }else{
-//            panelInterno1.remove(ventanaActual);
-//            panelInterno1.repaint();
-//            ventanaActual = new HabilitarVehiculos();
-//            panelInterno1.add(ventanaActual);
-//        }
+
     }//GEN-LAST:event_jmiHabilitarVehiculosActionPerformed
 
     private void jmiMisTiquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMisTiquetesActionPerformed
-//        if (ventanaActual == null){
-//            ventanaActual = new TiquetesCliente();
-//            panelInterno1.add(ventanaActual);
-//        }else{
-//            panelInterno1.remove(ventanaActual);
-//            panelInterno1.repaint();
-//            ventanaActual = new TiquetesCliente();
-//            panelInterno1.add(ventanaActual);
-//        }
+
     }//GEN-LAST:event_jmiMisTiquetesActionPerformed
 
     private void jmiPresentarEncuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPresentarEncuestaActionPerformed

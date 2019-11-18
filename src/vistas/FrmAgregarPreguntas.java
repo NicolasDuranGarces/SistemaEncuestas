@@ -37,7 +37,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         setVisible(true);
         setMaximizable(false);
         btnAgregarPreguntaExistente.setEnabled(false);
-        btnAgregarPreguntaNueva.setVisible(false);
+       // btnAgregarPreguntaNueva.setVisible(false);
 
     }
 
@@ -49,7 +49,7 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setVisible(true);
         setMaximizable(false);
-        btnAgregarPreguntaNueva.setVisible(false);
+        //btnAgregarPreguntaNueva.setVisible(false);
         txtIdEncuesta.setText(idEncuesta + "");
         btnFijarEncuesta.doClick();
         btnFijarEncuesta.setVisible(false);
@@ -132,10 +132,9 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
                 btnAgregarPreguntaNuevaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAgregarPreguntaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 210, 30));
+        jPanel2.add(btnAgregarPreguntaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 210, 30));
 
         txtIdEncuesta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtIdEncuesta.setMinimumSize(new java.awt.Dimension(4, 19));
         txtIdEncuesta.setPreferredSize(new java.awt.Dimension(4, 20));
         jPanel2.add(txtIdEncuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 149, 140, -1));
 
@@ -268,157 +267,9 @@ public class FrmAgregarPreguntas extends javax.swing.JInternalFrame {
 
     private void btnAgregarPreguntaNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaNuevaActionPerformed
         // TODO add your handling code here:
-        Object[] tipoPreguntas = {"Seleccion", "Elección única Dicotómicas", "Elección única Politómicas", "Elección múltiple", "Ranking", "Escala Numerica", "Escala Nominal", "Preguntas Mixtas"};
-        String opcion = (String) JOptionPane.showInputDialog(null, "Selecciona un Tipo de Pregunta", "Elegir", JOptionPane.QUESTION_MESSAGE, null, tipoPreguntas, tipoPreguntas[0]);
-
-        switch (opcion) {
-            case "Elección única Dicotómicas":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Elección única Politómicas":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionUnica();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Elección múltiple":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionMultiple();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionMultiple();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Ranking":
-
-                if (subVentana == null) {
-                    subVentana = new FrmRanking();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmRanking();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Escala Numerica":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Escala Nominal":
-
-                if (subVentana == null) {
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmEleccionEscala();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Preguntas Mixtas":
-
-                if (subVentana == null) {
-                    subVentana = new FrmPreguntaMixta();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                } else {
-                    panelInterno1.remove(subVentana);
-                    panelInterno1.repaint();
-                    subVentana = new FrmPreguntaMixta();
-                    panelInterno1.add(subVentana);
-                    Dimension desktopSize = panelInterno1.getSize();
-                    Dimension FrameSize = subVentana.getSize();
-                    subVentana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                    subVentana.show();
-                }
-                break;
-            case "Seleccion":
-                JOptionPane.showMessageDialog(null, "Ingrese una Opcion valida");
-                break;
-
-        }
-
+        FrmAgregarPreguntaButtom agregarPreguntasMediante = new FrmAgregarPreguntaButtom();
+        agregarPreguntasMediante.setVisible(true);
+        
     }//GEN-LAST:event_btnAgregarPreguntaNuevaActionPerformed
 
     private void btnAgregarPreguntaExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreguntaExistenteActionPerformed

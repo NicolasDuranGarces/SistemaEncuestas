@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/vistas/FrmPresentarEncuesta.java</file>
-            <file>file:/C:/Users/jose/Documents/GitHub/SistemaEncuestas/src/controladores/CtlAgregarPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmAgregarPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmLogin.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/MenuPrincipal.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/controladores/CtlAgregarPreguntas.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmPresentarEncuesta.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmCrearEncuesta.java</file>
+            <file>file:/C:/Users/nidug/OneDrive/Escritorio/Repo/Nueva%20carpeta/SistemaEncuestas/src/vistas/FrmInvitarUsuarios.java</file>
         </group>
     </open-files>
 </project-private>
