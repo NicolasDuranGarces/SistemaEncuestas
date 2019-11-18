@@ -15,6 +15,7 @@
 		<![CDATA[select avg(us.edad) promedioEdades from respuestas_usuarios rs join usuarios us on rs.dni= us.dni where rs.idencuesta= $P{idEncuesta}]]>
 	</queryString>
 	<field name="PROMEDIOEDADES" class="java.math.BigDecimal"/>
+	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -62,15 +63,20 @@
 				<textFieldExpression><![CDATA[$F{PROMEDIOEDADES}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="42" y="87" width="200" height="100" uuid="d335c634-3bbb-444e-b86b-8808da583d15"/>
+				<reportElement x="0" y="83" width="555" height="100" uuid="8feca714-81a0-49c2-b22e-046ec4f774b6"/>
 				<subreportParameter name="idEncuesta">
 					<subreportParameterExpression><![CDATA[$P{idEncuesta}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="Resultado">
-					<subreportParameterExpression><![CDATA[$P{ResultadoHombre}]]></subreportParameterExpression>
-				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrimedioEdadesHombres.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="201" width="555" height="100" uuid="9390fc9f-e197-4af2-ad42-8a1c6f7a31b7"/>
+				<subreportParameter name="idEcuesta">
+					<subreportParameterExpression><![CDATA[$P{idEncuesta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrimedioEdadesMujeres.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

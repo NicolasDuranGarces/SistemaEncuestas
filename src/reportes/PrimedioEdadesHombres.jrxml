@@ -6,13 +6,13 @@
 	<parameter name="idEncuesta" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="Resultado" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[$F{PROMEDIOEDADESHOMBRES}]]></defaultValueExpression>
-	</parameter>
 	<queryString>
 		<![CDATA[select avg(us.edad) PromedioEdadesHombres from respuestas_usuarios rs join usuarios us on rs.dni= us.dni where rs.idencuesta= $P{idEncuesta} and us.genero = 'H']]>
 	</queryString>
 	<field name="PROMEDIOEDADESHOMBRES" class="java.math.BigDecimal"/>
+	<variable name="resultado" class="java.lang.String">
+		<variableExpression><![CDATA[$F{PROMEDIOEDADESHOMBRES}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
