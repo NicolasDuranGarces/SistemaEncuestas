@@ -1,29 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7d26d71b-ce6c-418d-9317-50bcffea4d4a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idEncuesta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\nidug\\OneDrive\\Escritorio\\Repo\\Nueva carpeta\\SistemaEncuestas\\src\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ResultadoHombre" class="java.lang.String"/>
+	<parameter name="resultadoMujeres" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select avg(us.edad) promedioEdades from respuestas_usuarios rs join usuarios us on rs.dni= us.dni where rs.idencuesta= $P{idEncuesta}]]>
+	</queryString>
+	<field name="PROMEDIOEDADES" class="java.math.BigDecimal"/>
+	<variable name="variable1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="83" uuid="f4c02336-e968-40af-a6fa-d1e51a46b746"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="134" y="0" width="312" height="37" uuid="b2d6db9d-573d-4dd1-abf0-9947f4e5714f"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Promedio De Edades De la]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="37" width="376" height="32" uuid="bab8efc0-d08e-443f-baa1-0484c8f0b487"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Encuesta Numero" +$P{idEncuesta};]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="317" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="27" width="507" height="20" uuid="aa319fbe-72b0-4ab8-ab38-12ddb47c1262"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[El Promedio General de edad de las personas que presentaron la Encuesta Es de ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="518" y="27" width="100" height="20" uuid="3b4e7445-a2b7-4056-962c-f47e72d7cf11"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROMEDIOEDADES}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="83" width="555" height="100" uuid="8feca714-81a0-49c2-b22e-046ec4f774b6"/>
+				<subreportParameter name="idEncuesta">
+					<subreportParameterExpression><![CDATA[$P{idEncuesta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrimedioEdadesHombres.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="201" width="555" height="100" uuid="9390fc9f-e197-4af2-ad42-8a1c6f7a31b7"/>
+				<subreportParameter name="idEcuesta">
+					<subreportParameterExpression><![CDATA[$P{idEncuesta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrimedioEdadesMujeres.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

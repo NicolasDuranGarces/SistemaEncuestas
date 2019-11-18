@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af3fd5d4-58f9-46e9-b4e1-81c42f40840a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idEncuesta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select avg(us.edad) PromedioEdadesHombres from respuestas_usuarios rs join usuarios us on rs.dni= us.dni where rs.idencuesta= $P{idEncuesta} and us.genero = 'H']]>
+	</queryString>
+	<field name="PROMEDIOEDADESHOMBRES" class="java.math.BigDecimal"/>
+	<variable name="resultado" class="java.lang.String">
+		<variableExpression><![CDATA[$F{PROMEDIOEDADESHOMBRES}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="450" height="20" uuid="553e39d1-80c4-4bd3-8d17-36d0d0985102"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[El Promedio  de edad de Hombres que presentaron la Encuesta Es de ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="472" y="16" width="174" height="20" uuid="8c96b724-64ce-4070-8ed4-6e81cc1fce07"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROMEDIOEDADESHOMBRES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>
