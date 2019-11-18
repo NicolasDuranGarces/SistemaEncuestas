@@ -74,6 +74,9 @@ public class CtlPresentarEncuesta {
         return boRespuestas.agregarRespuestaMultiple(listaRespuestas);
     }
     
+    public boolean verificarSiContestada(int idEncuesta, int numeroPregunta, long dni) throws ConexionException{
+        return boRespuestas.verificarSiContestada(idEncuesta, numeroPregunta, dni);
+    }
 //    public ArrayList<RespuestaUsuario> traerMisRespuestas(){
 //        return boRespuestas.traerMisRespuestas();
 //    }

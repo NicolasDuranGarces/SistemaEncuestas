@@ -51,6 +51,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     ArrayList<Pregunta> listaPreguntas = new ArrayList();
     ArrayList<Pregunta> listadoPreguntaEncuesta = new ArrayList();
     ArrayList<Opcion> listaOpciones = new ArrayList();
+    boolean yaRespondida;
 
     //Controladores
     CtlPresentarEncuesta controlador;
@@ -58,12 +59,14 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public FrmPresentarEncuesta(long dni, int idEncuesta) {
         initComponents();
         this.setVisible(true);
+        lblYaRespondida.setVisible(false);
         this.dni = dni;
         this.idEncuesta = idEncuesta;
         btnTerminar.setVisible(false);
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
         controlador = new CtlPresentarEncuesta();
         lblNumeroPregunta.setFont(Font.getFont("Dubai"));
+        yaRespondida = false;
 
         try {
             listadoPreguntaEncuesta = controlador.listarPreguntasAsociadas(idEncuesta);
@@ -88,18 +91,28 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     private void initComponents() {
 
         contenedor = new javax.swing.JPanel();
+        lblYaRespondida = new javax.swing.JLabel();
         btnsiguiente = new javax.swing.JButton();
         btnTerminar = new javax.swing.JButton();
+
+        lblYaRespondida.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        lblYaRespondida.setText("Usted ya ha contestado esta encuesta");
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(contenedorLayout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(lblYaRespondida)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 219, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(lblYaRespondida)
+                .addGap(100, 100, 100))
         );
 
         btnsiguiente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -127,7 +140,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
                 .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(541, Short.MAX_VALUE)
                 .addComponent(btnsiguiente)
                 .addGap(51, 51, 51)
                 .addComponent(btnTerminar)
@@ -142,7 +155,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnsiguiente)
                     .addComponent(btnTerminar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,6 +186,9 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
         if (checboxG.size() > 0) {
             guardarRespuestaMultiple();
         }
+        if (panelList.size() > 0) {
+            guardarRespuestaRanking();
+        }
         this.dispose();
     }//GEN-LAST:event_btnTerminarActionPerformed
 
@@ -181,52 +197,74 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     private javax.swing.JButton btnTerminar;
     private javax.swing.JButton btnsiguiente;
     private javax.swing.JPanel contenedor;
+    private javax.swing.JLabel lblYaRespondida;
     // End of variables declaration//GEN-END:variables
 
     public void pintarPregunta() {
 
+        
+                
         if (contadorPregunta < cantidadTotalDePreguntas || contadorPregunta == 0) {
-            lblNumeroPregunta.setText("PREGUNTA N.O. " +(contadorPregunta+1));
-            contenedor.add(lblNumeroPregunta);
-            lblDescrpcionPregunta.setText(listadoPreguntaEncuesta.get(contadorPregunta).getEnunciado());
-            lblDescrpcionPregunta.setName(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta() + "");
-            contenedor.add(lblDescrpcionPregunta);
-
-            switch (listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta()) {
-                case 2:
-                    cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
-                    break;
-                case 3:
-                    cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
-                    break;
-                case 4:
-                    cargarRespuestaEleccionMultiple(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
-                    break;
-                case 5:
-                    cargarRespuestaRanking(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                    break;
-                case 7:
-                    cargarRespuestaNumerica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                    break;
-                case 8:
-                    cargarRespuestaNominal(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                    break;
-                case 9:
-                    cargarRespuestaMixta(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
-                    tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
-                    break;
-                default:
-                    break;
+            
+            try {
+                if(!controlador.verificarSiContestada(idEncuesta, contadorPregunta+1, dni)){
+                    
+                    lblNumeroPregunta.setText("PREGUNTA No. " +(contadorPregunta+1));
+                    contenedor.add(lblNumeroPregunta);
+                    lblDescrpcionPregunta.setText(listadoPreguntaEncuesta.get(contadorPregunta).getEnunciado());
+                    lblDescrpcionPregunta.setName(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta() + "");
+                    contenedor.add(lblDescrpcionPregunta);
+                    
+                    switch (listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta()) {
+                        case 2:
+                            cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        case 3:
+                            cargarRespuestaEleccionUnica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        case 4:
+                            cargarRespuestaEleccionMultiple(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listadoPreguntaEncuesta.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        case 5:
+                            cargarRespuestaRanking(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        case 7:
+                            cargarRespuestaNumerica(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        case 8:
+                            cargarRespuestaNominal(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        case 9:
+                            cargarRespuestaMixta(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta());
+                            tipoPreguntaActual = listaPreguntas.get(contadorPregunta).getTipoPregunta();
+                            break;
+                        default:
+                            break;
+                    }
+                    contadorPregunta++;
+                    
+                } else {
+                    contadorPregunta++;
+                    if ((contadorPregunta) == cantidadTotalDePreguntas){
+                        yaRespondida = true;
+                    }
+                    pintarPregunta();
+                }
+            } catch (ConexionException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
             }
         }
-        contadorPregunta++;
+        
         if ((contadorPregunta) == cantidadTotalDePreguntas) {
+            if (yaRespondida){
+                lblYaRespondida.setVisible(true);
+            }
             btnTerminar.setVisible(true);
             btnsiguiente.setVisible(false);
         }
@@ -446,7 +484,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
 
         for (int i = 0; i < radioButtons.size(); i++) {
             if (radioButtons.get(i).isSelected()) {
-                if (txtOpcionPreguntaMixtaOtro == null) {
+                if (!radioButtons.get(radioButtons.size()-1).isSelected()) {
                     try {
                         respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni,
                                 idPregunta, i + 1, respuestaAbierta, ordenRanking);

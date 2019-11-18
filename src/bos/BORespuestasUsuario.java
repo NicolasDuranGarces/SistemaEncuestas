@@ -47,6 +47,10 @@ public class BORespuestasUsuario {
         return true;
     }
     
+    public boolean verificarSiContestada(int idEncuesta, int numeroPregunta, long dni) throws ConexionException{
+        return daoRespuestaUsuario.buscar(idEncuesta, numeroPregunta, dni);
+    }
+    
 //    public ArrayList<RespuestaUsuario> traerMisRespuestas(){
 //        
 //    }
