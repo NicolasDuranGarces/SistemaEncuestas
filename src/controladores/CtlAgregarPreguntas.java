@@ -213,7 +213,7 @@ public class CtlAgregarPreguntas {
                     }
                     controlPreguntas.setOpciones(listaOpciones);
                 }
-                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta(idEncuesta, i, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
+                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta(idEncuesta, idPregunta, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
                 agregarAEncuestaImport(preguntaEncuesta, idEncuesta);
                 System.out.println("Registrar PREGUNTA ENCUESTA\n" + idEncuesta + "," + idPregunta + "," + numeroPregunta + "," + idPreguntaRequisito + "," + idOpcionRequisito);
             }

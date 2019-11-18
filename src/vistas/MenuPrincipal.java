@@ -17,6 +17,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import excepciones.DniUnicoExcepcion;
+import excepciones.PreguntaYaEnLaEncuestaException;
 import excepciones.PreguntasInsuficientesException;
 import excepciones.YaExistenteException;
 import java.text.ParseException;
@@ -367,6 +368,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             } catch (ConexionException | YaExistenteException | PreguntasInsuficientesException | DniUnicoExcepcion ex) {
                 Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (PreguntaYaEnLaEncuestaException ex) {
                 Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
