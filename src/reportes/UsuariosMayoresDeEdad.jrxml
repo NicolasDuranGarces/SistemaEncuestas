@@ -16,19 +16,26 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="84" y="13" width="377" height="32" uuid="f84d2f79-589d-466c-abf4-e98fc0b71c49"/>
-				<textElement>
+				<reportElement x="141" y="0" width="277" height="30" uuid="f84d2f79-589d-466c-abf4-e98fc0b71c49"/>
+				<textElement textAlignment="Center">
 					<font fontName="Arial" size="20" isBold="true" isItalic="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Usuarios Hombres ordenados por edad]]></text>
+				<text><![CDATA[Lista de Todos los Usuarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="30" width="390" height="32" uuid="c19c0ed4-1f41-4d9f-bb28-31629111d047"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ registrados Que son Mayores de edad]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="70" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="52" splitType="Stretch">
+		<band height="142" splitType="Stretch">
 			<staticText>
 				<reportElement x="22" y="15" width="100" height="20" uuid="9448b68f-3112-4823-940a-45852bf989d3"/>
 				<textElement textAlignment="Center">
@@ -60,7 +67,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="34" splitType="Stretch">
+		<band height="110" splitType="Stretch">
 			<rectangle>
 				<reportElement x="22" y="1" width="519" height="32" uuid="eb92175f-0d28-45c7-9caa-7875d812a722"/>
 			</rectangle>
@@ -95,12 +102,12 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="155" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="182" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="246" splitType="Stretch"/>
 	</summary>
 </jasperReport>

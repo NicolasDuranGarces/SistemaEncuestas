@@ -56,8 +56,11 @@ public class CtlCrearEncuesta {
     }
 
     public int crear(Encuesta encuesta, int idSubcategoria, boolean isAleatoria, int cantidadPreguntas) throws ConexionException, YaExistenteException, PreguntasInsuficientesException {
+        System.out.println("Entro prro");
         int id;
+        System.out.println("Entro Prro ");
         id = boEncuesta.crearEncuesta(encuesta);
+        System.out.println("Entro Prro x2");
         if (isAleatoria) {
             boPreguntasEncuesta.generarCuestionarioAleatorio(id, cantidadPreguntas, idSubcategoria);
         }

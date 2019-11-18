@@ -1,11 +1,10 @@
 { 
-    "_id" : ObjectId("5db650c8601b4e23cb8d2bf9"), 
     "idEncuesta" : 10.0, 
     "nombre" : "Encuesta de Ejemplo", 
     "descripcion" : "Encuesta de conocimiento de los tipos de base de datos", 
     "isPublic" : "1", 
-    "inicio" : ISODate("2019-11-27T05:00:00.000+0000"), 
-    "fin" : ISODate("2019-12-27T05:00:00.000+0000"), 
+    "inicio" : "2019-11-27T05:00:00.000+0000", 
+    "fin" : "2019-12-27T05:00:00.000+0000", 
     "maximoEncuestados" : 10.0, 
     "objetivo" : "Comprobar el correcto modelado de la BD", 
     "edadMinima" : 18.0, 

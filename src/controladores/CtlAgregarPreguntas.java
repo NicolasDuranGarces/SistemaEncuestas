@@ -18,6 +18,7 @@ import excepciones.YaExistenteException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ import modelo.Opcion;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 import modelo.PreguntaEncuesta;
-import org.json.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -44,6 +45,8 @@ public class CtlAgregarPreguntas {
     ArrayList<PreguntaEncuesta> listaPreguntasEncuesta;
 
     public CtlAgregarPreguntas() {
+        controlEncuesta = new CtlCrearEncuesta();
+        controlPreguntas = new CtlCrearPreguntas();
         boPreguntasEncuesta = new BOPreguntasEncuesta();
         boEncuesta = new BOEncuesta();
         boOpciones = new BOOpciones();
@@ -126,7 +129,7 @@ public class CtlAgregarPreguntas {
         return listaPreguntasEncuesta.get(pos);
     }
     
-    public boolean importarPreguntas(String archivo) throws ConexionException, YaExistenteException, PreguntasInsuficientesException, DniUnicoExcepcion {
+     public boolean importarPreguntas(String archivo) throws ConexionException, YaExistenteException, PreguntasInsuficientesException, DniUnicoExcepcion, java.text.ParseException {
         try {
             JSONParser parser = new JSONParser();
             //restivo por parametros la direccion del archivo json
@@ -135,70 +138,81 @@ public class CtlAgregarPreguntas {
             //el object lo defino como un tipo JSONObject
             JSONObject jSONObject = (JSONObject) obj;
             //definos las variables con los campos que va ha recivir el json
-            int idEncuesta = 0;
+         
             String nombre = jSONObject.get("nombre").toString();
             String descripcion = jSONObject.get("descripcion").toString();
-            int val = (int) jSONObject.get("isPublic");
+            int val = Integer.parseInt(jSONObject.get("isPublic").toString());
             boolean isPublic = false;
             if (val == 1) {
                 isPublic = true;
             }
-            Date fechaInicio = (Date) jSONObject.get("inicio");
-            Date fechaFin = (Date) jSONObject.get("fin");
-            int maximoEncuestados = (int) jSONObject.get("maximoEncuestados");
+            SimpleDateFormat valor = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date date = valor.parse(jSONObject.get("inicio").toString());
+            Date fechaInicio = new java.sql.Date(date.getTime());
+            java.util.Date date2 = valor.parse(jSONObject.get("fin").toString());
+            Date fechaFin = new java.sql.Date(date2.getTime());
+            int maximoEncuestados = (int) Double.parseDouble(jSONObject.get("maximoEncuestados").toString());
             String objetivo = jSONObject.get("objetivo").toString();
-            int edadMinima = (int) jSONObject.get("edadMinima");
-            int edadMaxima = (int) jSONObject.get("edadMaxima");
+            int edadMinima = (int) Double.parseDouble(jSONObject.get("edadMinima").toString());
+            int edadMaxima = (int) Double.parseDouble(jSONObject.get("edadMaxima").toString());
             String generoObjetivo = jSONObject.get("generoObjetivo").toString();
-            int idSubcategoria = (int) jSONObject.get("idSubcategoria");
-
-            Encuesta encuesta = new Encuesta(idEncuesta, nombre, descripcion, isPublic, fechaInicio, fechaFin, maximoEncuestados, objetivo, edadMinima, edadMaxima, generoObjetivo, idSubcategoria);
-            idEncuesta = controlEncuesta.crear(encuesta, idSubcategoria, isPublic, idEncuesta);
-            //defino un arrayJSON
+            int idSubcategoria = (int) Double.parseDouble(jSONObject.get("idSubcategoria").toString());
+            
+            Encuesta encuesta = new Encuesta(0, nombre, descripcion, isPublic, fechaInicio, fechaFin, maximoEncuestados, objetivo, edadMinima, edadMaxima, generoObjetivo, idSubcategoria);
+            System.out.println(encuesta.getId());
+            int idEncuesta = controlEncuesta.crear(encuesta, idSubcategoria, false, 8);
+            System.out.println("Registrar ENCUESTA\n" + idEncuesta + "," + nombre + "," + descripcion + "," + isPublic + "," + fechaInicio + "," + fechaFin + "," + maximoEncuestados + "," + objetivo + "," + edadMinima + "," + edadMaxima + "," + generoObjetivo + "," + idSubcategoria);
+            //defino de un objeto tipo preguntaEncuesta un arrayJSON 
             JSONArray preguntasEncuestaArray = (JSONArray) jSONObject.get("preguntasEncuesta");
             //y lo recorro para setiar las variables que contenga
-            for (int i = 0; i < preguntasEncuestaArray.length(); i++) {
+            for (int i = 0; i < preguntasEncuestaArray.size(); i++) {
 
                 JSONObject preguntasEncuesta = (JSONObject) preguntasEncuestaArray.get(i);
 
-                int numeroPregunta = (int) preguntasEncuesta.get("numeroPregunta");
-                long idPreguntaRequisito = (long) preguntasEncuesta.get("idPreguntaRequisito");
-                int idOpcionRequisito = (int) preguntasEncuesta.get("idOpcionRequisito");
-                PreguntaEncuesta preEncuesta = new PreguntaEncuesta(idEncuesta, idPreguntaRequisito, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
-                //FALTA SEGUIR AQUI
+                int numeroPregunta = (int) Double.parseDouble(preguntasEncuesta.get("numeroPregunta").toString());
+                long idPreguntaRequisito = (long) Double.parseDouble(preguntasEncuesta.get("idPreguntaRequisito").toString());
+                int idOpcionRequisito = (int) Double.parseDouble(preguntasEncuesta.get("idOpcionRequisito").toString());
 
                 JSONArray preguntaArray = (JSONArray) preguntasEncuesta.get("pregunta");
-                for (int j = 0; j < preguntaArray.length(); j++) {
+                long idPregunta = 0;
+                for (int j = 0; j < preguntaArray.size(); j++) {
 
-                    JSONObject pregunta = (JSONObject) preguntaArray.get(i);
+                    JSONObject pregunta = (JSONObject) preguntaArray.get(j);
 
-                    long idPregunta = (long) pregunta.get("idPregunta");
+                    idPregunta = (long) Double.parseDouble(pregunta.get("idPregunta").toString());
                     String enunciado = pregunta.get("enunciado").toString();
-                    int tipoPregunta = (int) pregunta.get("tipoPregunta");
+                    int tipoPregunta = (int) Double.parseDouble(pregunta.get("tipoPregunta").toString());
 
                     controlPreguntas.crear(tipoPregunta, idSubcategoria, enunciado, isPublic);
+                    System.out.println("Registrar PREGUNTA\n" + tipoPregunta + "," + idSubcategoria + "," + enunciado + "," + isPublic);
 
-                    JSONArray opcionesArray = (JSONArray) pregunta.get("pregunta");
+                    JSONArray opcionesArray = (JSONArray) pregunta.get("opciones");
                     ArrayList<Opcion> listaOpciones = new ArrayList<>();
-                    for (int k = 0; k < opcionesArray.length(); k++) {
+                    for (int k = 0; k <= opcionesArray.size(); k++) {
 
-                        JSONObject opciones = (JSONObject) opcionesArray.get(i);
+                        JSONObject opciones = (JSONObject) opcionesArray.get(k);
 
-                        int idOpcion = (int) opciones.get("idOpcion");
+                        int idOpcion = (int) Double.parseDouble(opciones.get("idOpcion").toString());
                         String textoOpcion = opciones.get("opcion").toString();
                         boolean isAbierta = false;
-                        if ((int) opciones.get("idOpcion") != 0) {
+                        if (Double.parseDouble(opciones.get("idOpcion").toString()) != 0) {
                             isAbierta = true;
                         }
                         Opcion op = new Opcion(idPregunta, idOpcion, textoOpcion, isAbierta);
                         listaOpciones.add(op);
+                        System.out.println(listaOpciones.get(k).getTextoOpcion());
                     }
                     controlPreguntas.setOpciones(listaOpciones);
                 }
 
                 //aqui mando el crear PreguntaEncuesta
+                PreguntaEncuesta preEncuesta = new PreguntaEncuesta(idEncuesta, i, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
+                System.out.println("Registrar PREGUNTA ENCUESTA\n" + idEncuesta + "," + idPregunta + "," + numeroPregunta + "," + idPreguntaRequisito + "," + idOpcionRequisito);
             }
-        } catch (IOException | ParseException ex) {
+
+        } catch (IOException ex) {
+            Logger.getLogger(CtlAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(CtlAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
