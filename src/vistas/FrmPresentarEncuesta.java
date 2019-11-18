@@ -8,6 +8,7 @@ package vistas;
 import controladores.CtlPresentarEncuesta;
 import excepciones.ConexionException;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -40,9 +41,10 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     // Componentes
     ArrayList<JRadioButton> radioButtons = new ArrayList();
     ArrayList<JCheckBox> checboxG = new ArrayList();
-    ArrayList<JTextField> textField = new ArrayList();
-    ArrayList<JLabel> label = new ArrayList();
-    ArrayList<JPanel> panel = new ArrayList();
+    ArrayList<JTextField> textFieldList = new ArrayList();
+    ArrayList<JLabel> labelList = new ArrayList();
+    ArrayList<JPanel> panelList = new ArrayList();
+    JLabel lblNumeroPregunta = new JLabel();
     JLabel lblDescrpcionPregunta = new JLabel();
     JTextField txtOpcionPreguntaMixtaOtro;
     //Listas Particulares
@@ -61,6 +63,7 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
         btnTerminar.setVisible(false);
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
         controlador = new CtlPresentarEncuesta();
+        lblNumeroPregunta.setFont(Font.getFont("Dubai"));
 
         try {
             listadoPreguntaEncuesta = controlador.listarPreguntasAsociadas(idEncuesta);
@@ -152,6 +155,10 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
             guardarRespuestaMultiple();
         }
 //        checboxG.clear();
+        if (panelList.size() > 0) {
+            guardarRespuestaRanking();
+        }
+
         limpiarPanelRespuestaUnica();
         limpiarPanelRespuestaMultiple();
         limpiarPanelRespuestaMixta();
@@ -179,6 +186,8 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     public void pintarPregunta() {
 
         if (contadorPregunta < cantidadTotalDePreguntas || contadorPregunta == 0) {
+            lblNumeroPregunta.setText("PREGUNTA N.O. " +(contadorPregunta+1));
+            contenedor.add(lblNumeroPregunta);
             lblDescrpcionPregunta.setText(listadoPreguntaEncuesta.get(contadorPregunta).getEnunciado());
             lblDescrpcionPregunta.setName(listadoPreguntaEncuesta.get(contadorPregunta).getIdPregunta() + "");
             contenedor.add(lblDescrpcionPregunta);
@@ -310,11 +319,11 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
                 label.setPreferredSize(new Dimension(1000, 50));
                 panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
                 panel.add(tex);
-                this.panel.add(panel);
+                this.panelList.add(panel);
                 tex.setPreferredSize(new Dimension(60, 30));
                 panel.add(label);
                 contenedor.add(panel);
-                textField.add(tex);
+                textFieldList.add(tex);
 //                label.add(label);
             }
 
@@ -407,12 +416,13 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
     }
 
     public void limpiarPanelRespuestaRanking() {
-        for (int i = 0; i < panel.size(); i++) {
-            contenedor.remove(panel.get(i));
+        for (int i = 0; i < panelList.size(); i++) {
+            contenedor.remove(panelList.get(i));
         }
+        panelList.clear();
         contenedor.repaint();
-        label.clear();
-        textField.clear();
+        labelList.clear();
+        textFieldList.clear();
 
     }
 
@@ -483,6 +493,38 @@ public class FrmPresentarEncuesta extends javax.swing.JFrame implements ActionLi
             controlador.guardarRespuestaMultiple(listaRespuestas);
         } catch (ConexionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    public void guardarRespuestaRanking() {
+        RespuestaUsuario respuesta;
+        ArrayList<RespuestaUsuario> listaRespuestas = new ArrayList<>();
+        int numeroPregunta = contadorPregunta;
+        long idPregunta = listadoPreguntaEncuesta.get(numeroPregunta - 1).getIdPregunta();
+        String respuestaAbierta = null;
+
+        boolean verificado = true;
+
+        for (int i = 0; i < textFieldList.size(); i++) {
+            if (textFieldList.get(i).getText().equals("")) {
+                
+                verificado = false;
+            } else {
+                int ordenRanking = Integer.parseInt(textFieldList.get(i).getText());
+                System.out.println(i + 1 + " op,orden " + ordenRanking);
+                respuesta = new RespuestaUsuario(idEncuesta, numeroPregunta, dni,
+                        idPregunta, i + 1, respuestaAbierta, ordenRanking);
+                listaRespuestas.add(respuesta);
+            }
+        }
+        if (verificado) {
+            try {
+                controlador.guardarRespuestaMultiple(listaRespuestas);
+            } catch (ConexionException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Asigne valor a todos los campos");
         }
     }
 
