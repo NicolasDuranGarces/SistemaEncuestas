@@ -8,6 +8,7 @@ package controladores;
 import bos.BOOpciones;
 import excepciones.NoExistenteException;
 import bos.BOEncuesta;
+import bos.BOPregunta;
 import bos.BOPreguntasEncuesta;
 import dtos.DTOPreguntaOpciones;
 import excepciones.ConexionException;
@@ -42,6 +43,7 @@ public class CtlAgregarPreguntas {
     BOPreguntasEncuesta boPreguntasEncuesta;
     BOEncuesta boEncuesta;
     BOOpciones boOpciones;
+    BOPregunta boPregunta;
     ArrayList<PreguntaEncuesta> listaPreguntasEncuesta;
 
     public CtlAgregarPreguntas() {
@@ -50,6 +52,7 @@ public class CtlAgregarPreguntas {
         boPreguntasEncuesta = new BOPreguntasEncuesta();
         boEncuesta = new BOEncuesta();
         boOpciones = new BOOpciones();
+        boPregunta = new BOPregunta();
         listaPreguntasEncuesta = new ArrayList<>();
     }
     
@@ -188,7 +191,8 @@ public class CtlAgregarPreguntas {
 
                     JSONObject pregunta = (JSONObject) preguntaArray.get(j);
 
-                    idPregunta = (long) Double.parseDouble(pregunta.get("idPregunta").toString());
+//                    idPregunta = (long) Double.parseDouble(pregunta.get("idPregunta").toString());
+                    idPregunta = boPregunta.generarId();
                     enunciado = pregunta.get("enunciado").toString();
                     tipoPregunta = (int) Double.parseDouble(pregunta.get("tipoPregunta").toString());
 
