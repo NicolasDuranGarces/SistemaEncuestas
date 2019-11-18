@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import excepciones.DniUnicoExcepcion;
 import excepciones.PreguntasInsuficientesException;
 import excepciones.YaExistenteException;
+import java.text.ParseException;
 
 /**
  *
@@ -365,6 +366,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             } catch (ConexionException | YaExistenteException | PreguntasInsuficientesException | DniUnicoExcepcion ex) {
                 Logger.getLogger(FrmAgregarPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jmiImportacionEncuestasActionPerformed
