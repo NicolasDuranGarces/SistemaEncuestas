@@ -112,6 +112,13 @@ public class CtlAgregarPreguntas {
         return boPreguntasEncuesta.agregarPreguntaALaEncuesta(preguntaEncuesta);
     }
     
+    public boolean agregarAEncuestaImport(PreguntaEncuesta preguntaEncuesta, int idEncuesta)
+            throws ConexionException, PreguntaYaEnLaEncuestaException {
+
+        int numeroPregunta = listaPreguntasEncuesta.size() + 1;
+        return boPreguntasEncuesta.agregarPreguntaALaEncuesta(preguntaEncuesta);
+    }
+    
     public boolean agregarDependiente(DTOPreguntaOpciones preguntaAgregar, int idEncuesta, long idPreguntaRequisito, int idOpcionRequisito)
             throws ConexionException, PreguntaYaEnLaEncuestaException {
         
@@ -129,7 +136,7 @@ public class CtlAgregarPreguntas {
         return listaPreguntasEncuesta.get(pos);
     }
     
-     public boolean importarPreguntas(String archivo) throws ConexionException, YaExistenteException, PreguntasInsuficientesException, DniUnicoExcepcion, java.text.ParseException {
+     public boolean importarPreguntas(String archivo) throws ConexionException, YaExistenteException, PreguntasInsuficientesException, DniUnicoExcepcion, java.text.ParseException, PreguntaYaEnLaEncuestaException {
         try {
             JSONParser parser = new JSONParser();
             //restivo por parametros la direccion del archivo json
@@ -175,13 +182,15 @@ public class CtlAgregarPreguntas {
 
                 JSONArray preguntaArray = (JSONArray) preguntasEncuesta.get("pregunta");
                 long idPregunta = 0;
+                String enunciado="";
+                int tipoPregunta = 0;
                 for (int j = 0; j < preguntaArray.size(); j++) {
 
                     JSONObject pregunta = (JSONObject) preguntaArray.get(j);
 
                     idPregunta = (long) Double.parseDouble(pregunta.get("idPregunta").toString());
-                    String enunciado = pregunta.get("enunciado").toString();
-                    int tipoPregunta = (int) Double.parseDouble(pregunta.get("tipoPregunta").toString());
+                    enunciado = pregunta.get("enunciado").toString();
+                    tipoPregunta = (int) Double.parseDouble(pregunta.get("tipoPregunta").toString());
 
                     controlPreguntas.crear(tipoPregunta, idSubcategoria, enunciado, isPublic);
                     System.out.println("Registrar PREGUNTA\n" + tipoPregunta + "," + idSubcategoria + "," + enunciado + "," + isPublic);
@@ -204,9 +213,8 @@ public class CtlAgregarPreguntas {
                     }
                     controlPreguntas.setOpciones(listaOpciones);
                 }
-
-                //aqui mando el crear PreguntaEncuesta
-                PreguntaEncuesta preEncuesta = new PreguntaEncuesta(idEncuesta, i, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
+                PreguntaEncuesta preguntaEncuesta = new PreguntaEncuesta(idEncuesta, idPregunta, numeroPregunta, idPreguntaRequisito, idOpcionRequisito);
+                agregarAEncuestaImport(preguntaEncuesta, idEncuesta);
                 System.out.println("Registrar PREGUNTA ENCUESTA\n" + idEncuesta + "," + idPregunta + "," + numeroPregunta + "," + idPreguntaRequisito + "," + idOpcionRequisito);
             }
 
